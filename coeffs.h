@@ -1,0 +1,1118 @@
+/**
+ *     Filter coeffients for FM radio
+ *     Copyright (C) 2024  Patrik Kluba <kpajko79@gmail.com>
+ * 
+ *     Permission is hereby granted, free of charge, to any person obtaining a copy
+ *     of this software and associated documentation files (the "Software"), to deal
+ *     in the Software without restriction, including without limitation the rights
+ *     to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *     copies of the Software, and to permit persons to whom the Software is
+ *     furnished to do so, subject to the following conditions:
+ * 
+ *     The above copyright notice and this permission notice shall be included in all
+ *     copies or substantial portions of the Software.
+ * 
+ *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *     SOFTWARE.
+ * 
+ *     SPDX-License-Identifier: MIT
+ * 
+ */
+
+#ifndef COEFFS__H
+#define COEFFS__H
+
+#include <pct_complex.h>
+
+/**
+ * Antialias filter for 406.250 -> 288.000 Ksps decimation for passband reduction
+ * 
+ * System gain = 1.001373923607624894 (+0.01193 dB), Maximum at 94383.3171 Hz (28.8870% is over unity)
+ * 
+ * Passband gain = 0.9985789453 .. 1.0013739236 (-0.01235 .. +0.01193 dB)
+ * Minimum at 105666.6616 Hz, Maximum at 94383.3171 Hz
+ * Median = 1.0000016454 (+0.00001 dB) Mean = 0.9999945665 (-0.00005 dB)
+ * MAD = 0.0009398141 STD = 0.0009426488
+ * 
+ * Stopband atten = 0.0000915527 .. 0.0000000851 (-80.76657 .. -141.40420 dB)
+ * Minimum at 203125.0000 Hz, Maximum at 182219.8144 Hz
+ * Median = 0.0000567813 (-84.91590 dB) Mean = 0.0000535902 (-85.41830 dB)
+ * MAD = 0.0000216825 STD = 0.0000267510
+ */
+#define COEFFS_HWFILTER_406K25 (const pct_1q15_t[15]){ \
+	   -47,     19,     86,   -189,     97,    256,   -591,    406,  \
+	   503,  -1537,   1446,    734,  -4650,   8491,  22675,  \
+}
+
+/**
+ * 4th order differentiator for 288.000 Ksps
+ * 
+ * System gain = 1.008992569333745593 (+0.07776 dB), Maximum at 37410.8152 Hz (20.6665% is over unity)
+ * 
+ * Passband gain = 0.9779206162 .. 1.0089925693 (-0.19393 .. +0.07776 dB)
+ * Minimum at 58650.0000 Hz, Maximum at 37410.8152 Hz
+ * Median = 1.0002162367 (+0.00188 dB) Mean = 0.9995019880 (-0.00433 dB)
+ * MAD = 0.0066141403 STD = 0.0074329841
+ */
+#define COEFFS_DIFFERENTIATOR_288K_F (const float[5]){  0.1105480269f, -0.7166420221f,  0.0000000000f,  0.7166420221f, -0.1105480269f,  }
+#define COEFFS_DIFFERENTIATOR_288K_F_1  0.1105480269f
+#define COEFFS_DIFFERENTIATOR_288K_F_2 -0.7166420221f
+#define COEFFS_DIFFERENTIATOR_288K_F_3  0.0000000000f
+#define COEFFS_DIFFERENTIATOR_288K_F_4  0.7166420221f
+#define COEFFS_DIFFERENTIATOR_288K_F_5 -0.1105480269f
+
+/**
+ * 4th order differentiator for 288.000 Ksps
+ * 
+ * System gain = 1.009029286099875522 (+0.07808 dB), Maximum at 37410.8152 Hz (20.7153% is over unity)
+ * 
+ * Passband gain = 0.9779354942 .. 1.0090292861 (-0.19380 .. +0.07808 dB)
+ * Minimum at 58650.0000 Hz, Maximum at 37410.8152 Hz
+ * Median = 1.0002544851 (+0.00221 dB) Mean = 0.9995435292 (-0.00397 dB)
+ * MAD = 0.0066061875 STD = 0.0074324124
+ */
+#define COEFFS_DIFFERENTIATOR_288K (const pct_1q15_t[5]){   3622, -23483,      0,  23483,  -3622,  }
+#define COEFFS_DIFFERENTIATOR_288K_1   3622
+#define COEFFS_DIFFERENTIATOR_288K_2 -23483
+#define COEFFS_DIFFERENTIATOR_288K_3      0
+#define COEFFS_DIFFERENTIATOR_288K_4  23483
+#define COEFFS_DIFFERENTIATOR_288K_5  -3622
+
+/**
+ * 6th order differentiator for 288.000 Ksps
+ * 
+ * System gain = 1.001312848130321509 (+0.01140 dB), Maximum at 46622.8773 Hz (12.8174% is over unity)
+ * 
+ * Passband gain = 0.9967619633 .. 1.0013128481 (-0.02817 .. +0.01140 dB)
+ * Minimum at 58650.0000 Hz, Maximum at 46622.8773 Hz
+ * Median = 0.9991446964 (-0.00743 dB) Mean = 0.9995599971 (-0.00382 dB)
+ * MAD = 0.0004194744 STD = 0.0009721929
+ */
+#define COEFFS_DIFFERENTIATOR6_288K_F (const float[7]){  0.0252647419f, -0.1815833598f,  0.7869538069f, -0.0000000000f, -0.7869538069f,  0.1815833598f, -0.0252647419f,  }
+#define COEFFS_DIFFERENTIATOR6_288K_F_1  0.0252647419f
+#define COEFFS_DIFFERENTIATOR6_288K_F_2 -0.1815833598f
+#define COEFFS_DIFFERENTIATOR6_288K_F_3  0.7869538069f
+#define COEFFS_DIFFERENTIATOR6_288K_F_4 -0.0000000000f
+#define COEFFS_DIFFERENTIATOR6_288K_F_5 -0.7869538069f
+#define COEFFS_DIFFERENTIATOR6_288K_F_6  0.1815833598f
+#define COEFFS_DIFFERENTIATOR6_288K_F_7 -0.0252647419f
+
+/**
+ * 6th order differentiator for 288.000 Ksps
+ * 
+ * System gain = 1.001325148820783939 (+0.01150 dB), Maximum at 46605.2970 Hz (12.9272% is over unity)
+ * 
+ * Passband gain = 0.9967658413 .. 1.0013251488 (-0.02814 .. +0.01150 dB)
+ * Minimum at 58650.0000 Hz, Maximum at 46605.2970 Hz
+ * Median = 0.9991860048 (-0.00707 dB) Mean = 0.9995866390 (-0.00359 dB)
+ * MAD = 0.0004230100 STD = 0.0009650468
+ */
+#define COEFFS_DIFFERENTIATOR6_288K (const pct_1q15_t[7]){    828,  -5950,  25787,      0, -25787,   5950,   -828,  }
+#define COEFFS_DIFFERENTIATOR6_288K_1    828
+#define COEFFS_DIFFERENTIATOR6_288K_2  -5950
+#define COEFFS_DIFFERENTIATOR6_288K_3  25787
+#define COEFFS_DIFFERENTIATOR6_288K_4      0
+#define COEFFS_DIFFERENTIATOR6_288K_5 -25787
+#define COEFFS_DIFFERENTIATOR6_288K_6   5950
+#define COEFFS_DIFFERENTIATOR6_288K_7   -828
+
+/**
+ * 8th order differentiator for 288.000 Ksps
+ * 
+ * System gain = 1.000115388851587017 (+0.00100 dB), Maximum at 21483.0894 Hz (20.7520% is over unity)
+ * 
+ * Passband gain = 0.9998797592 .. 1.0001153889 (-0.00104 .. +0.00100 dB)
+ * Minimum at 17.5781 Hz, Maximum at 21483.0894 Hz
+ * Median = 1.0000033640 (+0.00003 dB) Mean = 1.0000014177 (+0.00001 dB)
+ * MAD = 0.0000812908 STD = 0.0000817361
+ */
+#define COEFFS_DIFFERENTIATOR8_288K_F (const float[9]){  0.0075044450f, -0.0575826094f,  0.2398876399f, -0.8369851112f,  0.0000000000f,  0.8369851112f, -0.2398876399f,  0.0575826094f, -0.0075044450f,  }
+#define COEFFS_DIFFERENTIATOR8_288K_F_1  0.0075044450f
+#define COEFFS_DIFFERENTIATOR8_288K_F_2 -0.0575826094f
+#define COEFFS_DIFFERENTIATOR8_288K_F_3  0.2398876399f
+#define COEFFS_DIFFERENTIATOR8_288K_F_4 -0.8369851112f
+#define COEFFS_DIFFERENTIATOR8_288K_F_5  0.0000000000f
+#define COEFFS_DIFFERENTIATOR8_288K_F_6  0.8369851112f
+#define COEFFS_DIFFERENTIATOR8_288K_F_7 -0.2398876399f
+#define COEFFS_DIFFERENTIATOR8_288K_F_8  0.0575826094f
+#define COEFFS_DIFFERENTIATOR8_288K_F_9 -0.0075044450f
+
+/**
+ * 8th order differentiator for 288.000 Ksps
+ * 
+ * System gain = 1.000087700773018673 (+0.00076 dB), Maximum at 53742.8872 Hz (15.5762% is over unity)
+ * 
+ * Passband gain = 0.9998168949 .. 1.0000877008 (-0.00159 .. +0.00076 dB)
+ * Minimum at 17.5781 Hz, Maximum at 53742.8872 Hz
+ * Median = 0.9999590731 (-0.00036 dB) Mean = 0.9999566752 (-0.00038 dB)
+ * MAD = 0.0000809512 STD = 0.0000835689
+ */
+#define COEFFS_DIFFERENTIATOR8_288K (const pct_1q15_t[9]){    246,  -1887,   7861, -27426,      0,  27426,  -7861,   1887,   -246,  }
+#define COEFFS_DIFFERENTIATOR8_288K_1    246
+#define COEFFS_DIFFERENTIATOR8_288K_2  -1887
+#define COEFFS_DIFFERENTIATOR8_288K_3   7861
+#define COEFFS_DIFFERENTIATOR8_288K_4 -27426
+#define COEFFS_DIFFERENTIATOR8_288K_5      0
+#define COEFFS_DIFFERENTIATOR8_288K_6  27426
+#define COEFFS_DIFFERENTIATOR8_288K_7  -7861
+#define COEFFS_DIFFERENTIATOR8_288K_8   1887
+#define COEFFS_DIFFERENTIATOR8_288K_9   -246
+
+/**
+ * 4th order differentiator for 288.000 Ksps (no RDS)
+ * 
+ * System gain = 1.005834438961524580 (+0.05053 dB), Maximum at 34281.5269 Hz (18.2861% is over unity)
+ * 
+ * Passband gain = 0.9857962868 .. 1.0058344390 (-0.12426 .. +0.05053 dB)
+ * Minimum at 53000.0000 Hz, Maximum at 34281.5269 Hz
+ * Median = 0.9999361032 (-0.00056 dB) Mean = 0.9994964011 (-0.00438 dB)
+ * MAD = 0.0044579335 STD = 0.0048972627
+ */
+#define COEFFS_DIFFERENTIATORNORDS_288K_F (const float[5]){  0.1053474918f, -0.7075175047f,  0.0000000000f,  0.7075175047f, -0.1053474918f,  }
+#define COEFFS_DIFFERENTIATORNORDS_288K_F_1  0.1053474918f
+#define COEFFS_DIFFERENTIATORNORDS_288K_F_2 -0.7075175047f
+#define COEFFS_DIFFERENTIATORNORDS_288K_F_3  0.0000000000f
+#define COEFFS_DIFFERENTIATORNORDS_288K_F_4  0.7075175047f
+#define COEFFS_DIFFERENTIATORNORDS_288K_F_5 -0.1053474918f
+
+/**
+ * 4th order differentiator for 288.000 Ksps (no RDS)
+ * 
+ * System gain = 1.005840290238180001 (+0.05058 dB), Maximum at 34281.5269 Hz (18.2983% is over unity)
+ * 
+ * Passband gain = 0.9858005309 .. 1.0058402902 (-0.12422 .. +0.05058 dB)
+ * Minimum at 53000.0000 Hz, Maximum at 34281.5269 Hz
+ * Median = 0.9999429452 (-0.00050 dB) Mean = 0.9995025892 (-0.00432 dB)
+ * MAD = 0.0044575936 STD = 0.0048971891
+ */
+#define COEFFS_DIFFERENTIATORNORDS_288K (const pct_1q15_t[5]){   3452, -23184,      0,  23184,  -3452,  }
+#define COEFFS_DIFFERENTIATORNORDS_288K_1   3452
+#define COEFFS_DIFFERENTIATORNORDS_288K_2 -23184
+#define COEFFS_DIFFERENTIATORNORDS_288K_3      0
+#define COEFFS_DIFFERENTIATORNORDS_288K_4  23184
+#define COEFFS_DIFFERENTIATORNORDS_288K_5  -3452
+
+/**
+ * 6th order differentiator for 288.000 Ksps (no RDS)
+ * 
+ * System gain = 1.000873059179884228 (+0.00758 dB), Maximum at 41630.0803 Hz (12.0483% is over unity)
+ * 
+ * Passband gain = 0.9979122596 .. 1.0008730592 (-0.01815 .. +0.00758 dB)
+ * Minimum at 53000.0000 Hz, Maximum at 41630.0803 Hz
+ * Median = 0.9992716821 (-0.00633 dB) Mean = 0.9995200953 (-0.00417 dB)
+ * MAD = 0.0005713474 STD = 0.0008163858
+ */
+#define COEFFS_DIFFERENTIATORNORDS6_288K_F (const float[7]){  0.0221843515f, -0.1718762368f,  0.7765495181f, -0.0000000000f, -0.7765495181f,  0.1718762368f, -0.0221843515f,  }
+#define COEFFS_DIFFERENTIATORNORDS6_288K_F_1  0.0221843515f
+#define COEFFS_DIFFERENTIATORNORDS6_288K_F_2 -0.1718762368f
+#define COEFFS_DIFFERENTIATORNORDS6_288K_F_3  0.7765495181f
+#define COEFFS_DIFFERENTIATORNORDS6_288K_F_4 -0.0000000000f
+#define COEFFS_DIFFERENTIATORNORDS6_288K_F_5 -0.7765495181f
+#define COEFFS_DIFFERENTIATORNORDS6_288K_F_6  0.1718762368f
+#define COEFFS_DIFFERENTIATORNORDS6_288K_F_7 -0.0221843515f
+
+/**
+ * 6th order differentiator for 288.000 Ksps (no RDS)
+ * 
+ * System gain = 1.000878768086856718 (+0.00763 dB), Maximum at 41612.5000 Hz (12.1216% is over unity)
+ * 
+ * Passband gain = 0.9979139917 .. 1.0008787681 (-0.01814 .. +0.00763 dB)
+ * Minimum at 53000.0000 Hz, Maximum at 41612.5000 Hz
+ * Median = 0.9992831915 (-0.00623 dB) Mean = 0.9995313465 (-0.00407 dB)
+ * MAD = 0.0005649379 STD = 0.0008126707
+ */
+#define COEFFS_DIFFERENTIATORNORDS6_288K (const pct_1q15_t[7]){    727,  -5632,  25446,      0, -25446,   5632,   -727,  }
+#define COEFFS_DIFFERENTIATORNORDS6_288K_1    727
+#define COEFFS_DIFFERENTIATORNORDS6_288K_2  -5632
+#define COEFFS_DIFFERENTIATORNORDS6_288K_3  25446
+#define COEFFS_DIFFERENTIATORNORDS6_288K_4      0
+#define COEFFS_DIFFERENTIATORNORDS6_288K_5 -25446
+#define COEFFS_DIFFERENTIATORNORDS6_288K_6   5632
+#define COEFFS_DIFFERENTIATORNORDS6_288K_7   -727
+
+/**
+ * 8th order differentiator for 288.000 Ksps (no RDS)
+ * 
+ * System gain = 1.000050405673369003 (+0.00044 dB), Maximum at 48609.4480 Hz (18.7744% is over unity)
+ * 
+ * Passband gain = 0.9999494033 .. 1.0000504057 (-0.00044 .. +0.00044 dB)
+ * Minimum at 17.5781 Hz, Maximum at 48609.4480 Hz
+ * Median = 1.0000015170 (+0.00001 dB) Mean = 1.0000007429 (+0.00001 dB)
+ * MAD = 0.0000342598 STD = 0.0000344302
+ */
+#define COEFFS_DIFFERENTIATORNORDS8_288K_F (const float[9]){  0.0065257978f, -0.0533122309f,  0.2319625914f, -0.8300663829f,  0.0000000000f,  0.8300663829f, -0.2319625914f,  0.0533122309f, -0.0065257978f,  }
+#define COEFFS_DIFFERENTIATORNORDS8_288K_F_1  0.0065257978f
+#define COEFFS_DIFFERENTIATORNORDS8_288K_F_2 -0.0533122309f
+#define COEFFS_DIFFERENTIATORNORDS8_288K_F_3  0.2319625914f
+#define COEFFS_DIFFERENTIATORNORDS8_288K_F_4 -0.8300663829f
+#define COEFFS_DIFFERENTIATORNORDS8_288K_F_5  0.0000000000f
+#define COEFFS_DIFFERENTIATORNORDS8_288K_F_6  0.8300663829f
+#define COEFFS_DIFFERENTIATORNORDS8_288K_F_7 -0.2319625914f
+#define COEFFS_DIFFERENTIATORNORDS8_288K_F_8  0.0533122309f
+#define COEFFS_DIFFERENTIATORNORDS8_288K_F_9 -0.0065257978f
+
+/**
+ * 8th order differentiator for 288.000 Ksps (no RDS)
+ * 
+ * System gain = 1.000075482927137660 (+0.00066 dB), Maximum at 48591.8677 Hz (21.3745% is over unity)
+ * 
+ * Passband gain = 0.9999389650 .. 1.0000754829 (-0.00053 .. +0.00066 dB)
+ * Minimum at 17.5781 Hz, Maximum at 48591.8677 Hz
+ * Median = 1.0000119283 (+0.00010 dB) Mean = 1.0000103324 (+0.00009 dB)
+ * MAD = 0.0000324932 STD = 0.0000376222
+ */
+#define COEFFS_DIFFERENTIATORNORDS8_288K (const pct_1q15_t[9]){    214,  -1747,   7601, -27200,      0,  27200,  -7601,   1747,   -214,  }
+#define COEFFS_DIFFERENTIATORNORDS8_288K_1    214
+#define COEFFS_DIFFERENTIATORNORDS8_288K_2  -1747
+#define COEFFS_DIFFERENTIATORNORDS8_288K_3   7601
+#define COEFFS_DIFFERENTIATORNORDS8_288K_4 -27200
+#define COEFFS_DIFFERENTIATORNORDS8_288K_5      0
+#define COEFFS_DIFFERENTIATORNORDS8_288K_6  27200
+#define COEFFS_DIFFERENTIATORNORDS8_288K_7  -7601
+#define COEFFS_DIFFERENTIATORNORDS8_288K_8   1747
+#define COEFFS_DIFFERENTIATORNORDS8_288K_9   -214
+
+/**
+ * 4th order differentiator for 243.750 Ksps
+ * 
+ * System gain = 1.018102978138793802 (+0.15583 dB), Maximum at 36617.5515 Hz (24.8779% is over unity)
+ * 
+ * Passband gain = 0.9545923975 .. 1.0181029781 (-0.40364 .. +0.15583 dB)
+ * Minimum at 58650.0000 Hz, Maximum at 36617.5515 Hz
+ * Median = 1.0009776351 (+0.00849 dB) Mean = 0.9993977743 (-0.00523 dB)
+ * MAD = 0.0128606798 STD = 0.0149266368
+ */
+#define COEFFS_DIFFERENTIATOR_243K75_F (const float[5]){  0.1227367297f, -0.7373135090f,  0.0000000000f,  0.7373135090f, -0.1227367297f,  }
+#define COEFFS_DIFFERENTIATOR_243K75_F_1  0.1227367297f
+#define COEFFS_DIFFERENTIATOR_243K75_F_2 -0.7373135090f
+#define COEFFS_DIFFERENTIATOR_243K75_F_3  0.0000000000f
+#define COEFFS_DIFFERENTIATOR_243K75_F_4  0.7373135090f
+#define COEFFS_DIFFERENTIATOR_243K75_F_5 -0.1227367297f
+
+/**
+ * 4th order differentiator for 243.750 Ksps
+ * 
+ * System gain = 1.018077835524504593 (+0.15562 dB), Maximum at 36617.5515 Hz (24.8535% is over unity)
+ * 
+ * Passband gain = 0.9545799744 .. 1.0180778355 (-0.40375 .. +0.15562 dB)
+ * Minimum at 58650.0000 Hz, Maximum at 36617.5515 Hz
+ * Median = 1.0009502218 (+0.00825 dB) Mean = 0.9993700679 (-0.00547 dB)
+ * MAD = 0.0128649112 STD = 0.0149264588
+ */
+#define COEFFS_DIFFERENTIATOR_243K75 (const pct_1q15_t[5]){   4022, -24160,      0,  24160,  -4022,  }
+#define COEFFS_DIFFERENTIATOR_243K75_1   4022
+#define COEFFS_DIFFERENTIATOR_243K75_2 -24160
+#define COEFFS_DIFFERENTIATOR_243K75_3      0
+#define COEFFS_DIFFERENTIATOR_243K75_4  24160
+#define COEFFS_DIFFERENTIATOR_243K75_5  -4022
+
+/**
+ * 6th order differentiator for 243.750 Ksps
+ * 
+ * System gain = 1.003196520118662560 (+0.02772 dB), Maximum at 46824.6387 Hz (20.7642% is over unity)
+ * 
+ * Passband gain = 0.9919208896 .. 1.0031965201 (-0.07046 .. +0.02772 dB)
+ * Minimum at 58650.0000 Hz, Maximum at 46824.6387 Hz
+ * Median = 0.9995580987 (-0.00384 dB) Mean = 0.9996160077 (-0.00334 dB)
+ * MAD = 0.0015102902 STD = 0.0021113403
+ */
+#define COEFFS_DIFFERENTIATOR6_243K75_F (const float[7]){  0.0315929167f, -0.2001514435f,  0.8058581352f, -0.0000000000f, -0.8058581352f,  0.2001514435f, -0.0315929167f,  }
+#define COEFFS_DIFFERENTIATOR6_243K75_F_1  0.0315929167f
+#define COEFFS_DIFFERENTIATOR6_243K75_F_2 -0.2001514435f
+#define COEFFS_DIFFERENTIATOR6_243K75_F_3  0.8058581352f
+#define COEFFS_DIFFERENTIATOR6_243K75_F_4 -0.0000000000f
+#define COEFFS_DIFFERENTIATOR6_243K75_F_5 -0.8058581352f
+#define COEFFS_DIFFERENTIATOR6_243K75_F_6  0.2001514435f
+#define COEFFS_DIFFERENTIATOR6_243K75_F_7 -0.0315929167f
+
+/**
+ * 6th order differentiator for 243.750 Ksps
+ * 
+ * System gain = 1.003170356803904983 (+0.02749 dB), Maximum at 46839.5179 Hz (20.0562% is over unity)
+ * 
+ * Passband gain = 0.9919137347 .. 1.0031703568 (-0.07052 .. +0.02749 dB)
+ * Minimum at 58650.0000 Hz, Maximum at 46839.5179 Hz
+ * Median = 0.9994735198 (-0.00457 dB) Mean = 0.9995482896 (-0.00392 dB)
+ * MAD = 0.0015198660 STD = 0.0021199503
+ */
+#define COEFFS_DIFFERENTIATOR6_243K75 (const pct_1q15_t[7]){   1035,  -6559,  26406,      0, -26406,   6559,  -1035,  }
+#define COEFFS_DIFFERENTIATOR6_243K75_1   1035
+#define COEFFS_DIFFERENTIATOR6_243K75_2  -6559
+#define COEFFS_DIFFERENTIATOR6_243K75_3  26406
+#define COEFFS_DIFFERENTIATOR6_243K75_4      0
+#define COEFFS_DIFFERENTIATOR6_243K75_5 -26406
+#define COEFFS_DIFFERENTIATOR6_243K75_6   6559
+#define COEFFS_DIFFERENTIATOR6_243K75_7  -1035
+
+/**
+ * 8th order differentiator for 243.750 Ksps
+ * 
+ * System gain = 1.000485130028746505 (+0.00421 dB), Maximum at 53460.7333 Hz (24.5361% is over unity)
+ * 
+ * Passband gain = 0.9994961557 .. 1.0004851300 (-0.00438 .. +0.00421 dB)
+ * Minimum at 14.8773 Hz, Maximum at 53460.7333 Hz
+ * Median = 1.0000148869 (+0.00013 dB) Mean = 1.0000060042 (+0.00005 dB)
+ * MAD = 0.0003430210 STD = 0.0003445909
+ */
+#define COEFFS_DIFFERENTIATOR8_243K75_F (const float[9]){  0.0101425005f, -0.0679509267f,  0.2577027380f, -0.8518707752f,  0.0000000000f,  0.8518707752f, -0.2577027380f,  0.0679509267f, -0.0101425005f,  }
+#define COEFFS_DIFFERENTIATOR8_243K75_F_1  0.0101425005f
+#define COEFFS_DIFFERENTIATOR8_243K75_F_2 -0.0679509267f
+#define COEFFS_DIFFERENTIATOR8_243K75_F_3  0.2577027380f
+#define COEFFS_DIFFERENTIATOR8_243K75_F_4 -0.8518707752f
+#define COEFFS_DIFFERENTIATOR8_243K75_F_5  0.0000000000f
+#define COEFFS_DIFFERENTIATOR8_243K75_F_6  0.8518707752f
+#define COEFFS_DIFFERENTIATOR8_243K75_F_7 -0.2577027380f
+#define COEFFS_DIFFERENTIATOR8_243K75_F_8  0.0679509267f
+#define COEFFS_DIFFERENTIATOR8_243K75_F_9 -0.0101425005f
+
+/**
+ * 8th order differentiator for 243.750 Ksps
+ * 
+ * System gain = 1.000596762275849816 (+0.00518 dB), Maximum at 20429.0517 Hz (26.8433% is over unity)
+ * 
+ * Passband gain = 0.9994946637 .. 1.0005967623 (-0.00439 .. +0.00518 dB)
+ * Minimum at 58650.0000 Hz, Maximum at 20429.0517 Hz
+ * Median = 1.0000859208 (+0.00075 dB) Mean = 1.0000762225 (+0.00066 dB)
+ * MAD = 0.0003303077 STD = 0.0003496143
+ */
+#define COEFFS_DIFFERENTIATOR8_243K75 (const pct_1q15_t[9]){    332,  -2227,   8444, -27914,      0,  27914,  -8444,   2227,   -332,  }
+#define COEFFS_DIFFERENTIATOR8_243K75_1    332
+#define COEFFS_DIFFERENTIATOR8_243K75_2  -2227
+#define COEFFS_DIFFERENTIATOR8_243K75_3   8444
+#define COEFFS_DIFFERENTIATOR8_243K75_4 -27914
+#define COEFFS_DIFFERENTIATOR8_243K75_5      0
+#define COEFFS_DIFFERENTIATOR8_243K75_6  27914
+#define COEFFS_DIFFERENTIATOR8_243K75_7  -8444
+#define COEFFS_DIFFERENTIATOR8_243K75_8   2227
+#define COEFFS_DIFFERENTIATOR8_243K75_9   -332
+
+/**
+ * 4th order differentiator for 243.750 Ksps (no RDS)
+ * 
+ * System gain = 1.011853455340161689 (+0.10235 dB), Maximum at 33537.5704 Hz (22.2656% is over unity)
+ * 
+ * Passband gain = 0.9706887861 .. 1.0118534553 (-0.25840 .. +0.10235 dB)
+ * Minimum at 53000.0000 Hz, Maximum at 33537.5704 Hz
+ * Median = 1.0004628175 (+0.00402 dB) Mean = 0.9994846833 (-0.00448 dB)
+ * MAD = 0.0085695829 STD = 0.0097627407
+ */
+#define COEFFS_DIFFERENTIATORNORDS_243K75_F (const float[5]){  0.1147160754f, -0.7238147259f,  0.0000000000f,  0.7238147259f, -0.1147160754f,  }
+#define COEFFS_DIFFERENTIATORNORDS_243K75_F_1  0.1147160754f
+#define COEFFS_DIFFERENTIATORNORDS_243K75_F_2 -0.7238147259f
+#define COEFFS_DIFFERENTIATORNORDS_243K75_F_3  0.0000000000f
+#define COEFFS_DIFFERENTIATORNORDS_243K75_F_4  0.7238147259f
+#define COEFFS_DIFFERENTIATORNORDS_243K75_F_5 -0.1147160754f
+
+/**
+ * 4th order differentiator for 243.750 Ksps (no RDS)
+ * 
+ * System gain = 1.011856693884547687 (+0.10238 dB), Maximum at 33537.5704 Hz (22.2656% is over unity)
+ * 
+ * Passband gain = 0.9706907856 .. 1.0118566939 (-0.25838 .. +0.10238 dB)
+ * Minimum at 53000.0000 Hz, Maximum at 33537.5704 Hz
+ * Median = 1.0004668392 (+0.00405 dB) Mean = 0.9994881652 (-0.00445 dB)
+ * MAD = 0.0085691782 STD = 0.0097627395
+ */
+#define COEFFS_DIFFERENTIATORNORDS_243K75 (const pct_1q15_t[5]){   3759, -23718,      0,  23718,  -3759,  }
+#define COEFFS_DIFFERENTIATORNORDS_243K75_1   3759
+#define COEFFS_DIFFERENTIATORNORDS_243K75_2 -23718
+#define COEFFS_DIFFERENTIATORNORDS_243K75_3      0
+#define COEFFS_DIFFERENTIATORNORDS_243K75_4  23718
+#define COEFFS_DIFFERENTIATORNORDS_243K75_5  -3759
+
+/**
+ * 6th order differentiator for 243.750 Ksps (no RDS)
+ * 
+ * System gain = 1.001817293779132756 (+0.01577 dB), Maximum at 42286.5023 Hz (13.4155% is over unity)
+ * 
+ * Passband gain = 0.9954664270 .. 1.0018172938 (-0.03947 .. +0.01577 dB)
+ * Minimum at 53000.0000 Hz, Maximum at 42286.5023 Hz
+ * Median = 0.9993544812 (-0.00561 dB) Mean = 0.9995834429 (-0.00362 dB)
+ * MAD = 0.0007789111 STD = 0.0012405459
+ */
+#define COEFFS_DIFFERENTIATORNORDS6_243K75_F (const float[7]){  0.0274850447f, -0.1883020848f,  0.7939498425f, -0.0000000000f, -0.7939498425f,  0.1883020848f, -0.0274850447f,  }
+#define COEFFS_DIFFERENTIATORNORDS6_243K75_F_1  0.0274850447f
+#define COEFFS_DIFFERENTIATORNORDS6_243K75_F_2 -0.1883020848f
+#define COEFFS_DIFFERENTIATORNORDS6_243K75_F_3  0.7939498425f
+#define COEFFS_DIFFERENTIATORNORDS6_243K75_F_4 -0.0000000000f
+#define COEFFS_DIFFERENTIATORNORDS6_243K75_F_5 -0.7939498425f
+#define COEFFS_DIFFERENTIATORNORDS6_243K75_F_6  0.1883020848f
+#define COEFFS_DIFFERENTIATORNORDS6_243K75_F_7 -0.0274850447f
+
+/**
+ * 6th order differentiator for 243.750 Ksps (no RDS)
+ * 
+ * System gain = 1.001820285144625178 (+0.01580 dB), Maximum at 42256.7440 Hz (13.5132% is over unity)
+ * 
+ * Passband gain = 0.9954514448 .. 1.0018202851 (-0.03960 .. +0.01580 dB)
+ * Minimum at 53000.0000 Hz, Maximum at 42256.7440 Hz
+ * Median = 0.9994248115 (-0.00500 dB) Mean = 0.9996270177 (-0.00324 dB)
+ * MAD = 0.0007764617 STD = 0.0012257435
+ */
+#define COEFFS_DIFFERENTIATORNORDS6_243K75 (const pct_1q15_t[7]){    901,  -6170,  26016,      0, -26016,   6170,   -901,  }
+#define COEFFS_DIFFERENTIATORNORDS6_243K75_1    901
+#define COEFFS_DIFFERENTIATORNORDS6_243K75_2  -6170
+#define COEFFS_DIFFERENTIATORNORDS6_243K75_3  26016
+#define COEFFS_DIFFERENTIATORNORDS6_243K75_4      0
+#define COEFFS_DIFFERENTIATORNORDS6_243K75_5 -26016
+#define COEFFS_DIFFERENTIATORNORDS6_243K75_6   6170
+#define COEFFS_DIFFERENTIATORNORDS6_243K75_7   -901
+
+/**
+ * 8th order differentiator for 243.750 Ksps (no RDS)
+ * 
+ * System gain = 1.000206700028828832 (+0.00180 dB), Maximum at 48431.5854 Hz (22.2290% is over unity)
+ * 
+ * Passband gain = 0.9997918686 .. 1.0002067000 (-0.00181 .. +0.00180 dB)
+ * Minimum at 14.8773 Hz, Maximum at 48431.5854 Hz
+ * Median = 1.0000069306 (+0.00006 dB) Mean = 1.0000032496 (+0.00003 dB)
+ * MAD = 0.0001416674 STD = 0.0001424127
+ */
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_F (const float[9]){  0.0083288942f, -0.0609900095f,  0.2459629476f, -0.8421673775f,  0.0000000000f,  0.8421673775f, -0.2459629476f,  0.0609900095f, -0.0083288942f,  }
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_F_1  0.0083288942f
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_F_2 -0.0609900095f
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_F_3  0.2459629476f
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_F_4 -0.8421673775f
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_F_5  0.0000000000f
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_F_6  0.8421673775f
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_F_7 -0.2459629476f
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_F_8  0.0609900095f
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_F_9 -0.0083288942f
+
+/**
+ * 8th order differentiator for 243.750 Ksps (no RDS)
+ * 
+ * System gain = 1.000211036474104587 (+0.00183 dB), Maximum at 19015.5338 Hz (22.2656% is over unity)
+ * 
+ * Passband gain = 0.9997751680 .. 1.0002110365 (-0.00195 .. +0.00183 dB)
+ * Minimum at 53000.0000 Hz, Maximum at 19015.5338 Hz
+ * Median = 1.0000075510 (+0.00007 dB) Mean = 1.0000042450 (+0.00004 dB)
+ * MAD = 0.0001405608 STD = 0.0001424421
+ */
+#define COEFFS_DIFFERENTIATORNORDS8_243K75 (const pct_1q15_t[9]){    273,  -1999,   8060, -27596,      0,  27596,  -8060,   1999,   -273,  }
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_1    273
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_2  -1999
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_3   8060
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_4 -27596
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_5      0
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_6  27596
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_7  -8060
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_8   1999
+#define COEFFS_DIFFERENTIATORNORDS8_243K75_9   -273
+
+/**
+ * Quick antialias filter for 288.000 Ksps baseband halving
+ * 
+ * System gain = 1.000250561782230818 (+0.00218 dB), Maximum at 56766.6952 Hz (20.7103% is over unity)
+ * 
+ * Passband gain = 0.9997498587 .. 1.0002505618 (-0.00217 .. +0.00218 dB)
+ * Minimum at 13905.9944 Hz, Maximum at 56766.6952 Hz
+ * Median = 1.0000062614 (+0.00005 dB) Mean = 1.0000033211 (+0.00003 dB)
+ * MAD = 0.0001765554 STD = 0.0001768153
+ * 
+ * Stopband atten = 0.0746375932 .. 0.0000291221 (-22.54085 .. -90.71555 dB)
+ * Minimum at 104268.5875 Hz, Maximum at 124081.5529 Hz
+ * Median = 0.0523758314 (-25.61738 dB) Mean = 0.0472815306 (-26.50617 dB)
+ * MAD = 0.0185722298 STD = 0.0229906270
+ */
+float quickaudiohalver_288K_f[25];
+
+/**
+ * Quick antialias filter for 288.000 Ksps baseband halving
+ * 
+ * System gain = 1.000305175781250000 (+0.00265 dB), Maximum at 0.0000 Hz (21.4059% is over unity)
+ * 
+ * Passband gain = 0.9996832055 .. 1.0003051758 (-0.00275 .. +0.00265 dB)
+ * Minimum at 35494.5672 Hz, Maximum at 0.0000 Hz
+ * Median = 1.0000214308 (+0.00019 dB) Mean = 1.0000147862 (+0.00013 dB)
+ * MAD = 0.0001837794 STD = 0.0001987748
+ * 
+ * Stopband atten = 0.0746842059 .. 0.0000060465 (-22.53542 .. -104.36997 dB)
+ * Minimum at 85350.0000 Hz, Maximum at 110826.0286 Hz
+ * Median = 0.0523622979 (-25.61963 dB) Mean = 0.0472728499 (-26.50776 dB)
+ * MAD = 0.0185635948 STD = 0.0229861734
+ */
+pct_1q15_t quickaudiohalver_288K[25];
+
+/**
+ * Antialias filter for 288.000 -> 144.000 Ksps decimation for baseband halving
+ * 
+ * System gain = 1.001145107313385907 (+0.00994 dB), Maximum at 47660.1148 Hz (20.5150% is over unity)
+ * 
+ * Passband gain = 0.9988548158 .. 1.0011451073 (-0.00995 .. +0.00994 dB)
+ * Minimum at 53057.2580 Hz, Maximum at 47660.1148 Hz
+ * Median = 1.0000130544 (+0.00011 dB) Mean = 1.0000063505 (+0.00006 dB)
+ * MAD = 0.0008072211 STD = 0.0008083604
+ * 
+ * Stopband atten = 0.0000572503 .. 0.0000000092 (-84.84444 .. -160.70200 dB)
+ * Minimum at 97711.1464 Hz, Maximum at 128933.7077 Hz
+ * Median = 0.0000404265 (-87.86667 dB) Mean = 0.0000363911 (-88.78009 dB)
+ * MAD = 0.0000140981 STD = 0.0000176030
+ */
+float audiohalver_288K_f[45];
+
+/**
+ * Antialias filter for 288.000 -> 144.000 Ksps decimation for baseband halving
+ * 
+ * System gain = 1.001223992751913094 (+0.01062 dB), Maximum at 7260.6519 Hz (20.1977% is over unity)
+ * 
+ * Passband gain = 0.9987449145 .. 1.0012239928 (-0.01091 .. +0.01062 dB)
+ * Minimum at 53074.8382 Hz, Maximum at 7260.6519 Hz
+ * Median = 0.9999857711 (-0.00012 dB) Mean = 0.9999785989 (-0.00019 dB)
+ * MAD = 0.0008202925 STD = 0.0008252851
+ * 
+ * Stopband atten = 0.0001355663 .. 0.0000000000 (-77.35697 .. -653.35683 dB)
+ * Minimum at 89202.2952 Hz, Maximum at 144000.0000 Hz
+ * Median = 0.0000482437 (-86.33119 dB) Mean = 0.0000517232 (-85.72629 dB)
+ * MAD = 0.0000286600 STD = 0.0000364697
+ */
+pct_1q15_t audiohalver_288K[45];
+
+/**
+ * FM audio extractor for 144.000 Ksps
+ * 
+ * System gain = 1.001270507194864212 (+0.01103 dB), Maximum at 7946.2825 Hz (10.5199% is over unity)
+ * 
+ * Passband gain = 0.9987295904 .. 1.0012705072 (-0.01104 .. +0.01103 dB)
+ * Minimum at 9862.5320 Hz, Maximum at 7946.2825 Hz
+ * Median = 1.0000180923 (+0.00016 dB) Mean = 1.0000091157 (+0.00008 dB)
+ * MAD = 0.0008975863 STD = 0.0008971506
+ * 
+ * Stopband atten = 0.0000636046 .. 0.0000000312 (-83.93022 .. -150.12270 dB)
+ * Minimum at 31952.1426 Hz, Maximum at 66611.6469 Hz
+ * Median = 0.0000448793 (-86.95908 dB) Mean = 0.0000404080 (-87.87066 dB)
+ * MAD = 0.0000156625 STD = 0.0000195384
+ */
+float audiolowpass_144K_f[73];
+
+/**
+ * FM audio extractor for 144.000 Ksps
+ * 
+ * System gain = 1.001360203849200214 (+0.01181 dB), Maximum at 4008.3018 Hz (10.6297% is over unity)
+ * 
+ * Passband gain = 0.9985953983 .. 1.0013602038 (-0.01221 .. +0.01181 dB)
+ * Minimum at 9853.7419 Hz, Maximum at 4008.3018 Hz
+ * Median = 1.0000440383 (+0.00038 dB) Mean = 1.0000312359 (+0.00027 dB)
+ * MAD = 0.0008982496 STD = 0.0009078732
+ * 
+ * Stopband atten = 0.0002359994 .. 0.0000000170 (-72.54178 .. -155.37059 dB)
+ * Minimum at 43062.8739 Hz, Maximum at 70250.7630 Hz
+ * Median = 0.0000556376 (-85.09263 dB) Mean = 0.0000703095 (-83.05972 dB)
+ * MAD = 0.0000384581 STD = 0.0000574826
+ */
+pct_1q15_t audiolowpass_144K[73];
+
+/**
+ * FM 19 kHz pilot extractor for 144.000 Ksps
+ * 
+ * System gain = 1.002343216262493897 (+0.02033 dB), Maximum at -19004.2730 Hz (0.1953% is over unity)
+ * 
+ * Passband gain = 0.9976546451 .. 1.0023432163 (-0.02040 .. +0.02033 dB)
+ * Minimum at -19200.0000 Hz, Maximum at -19004.2730 Hz
+ * Median = 1.0010368312 (+0.00900 dB) Mean = 1.0006184509 (+0.00537 dB)
+ * MAD = 0.0011410181 STD = 0.0015443300
+ * 
+ * Stopband atten = 0.0470045336 .. 0.0000036362 (-26.55721 .. -108.78705 dB)
+ * Minimum at -49479.6728 Hz, Maximum at -140.6422 Hz
+ * Median = 0.0331709431 (-29.58484 dB) Mean = 0.0298674220 (-30.49605 dB)
+ * MAD = 0.0115844248 STD = 0.0144506403
+ */
+float complex pilot_144K_c[45];
+
+/**
+ * FM 19 kHz pilot extractor for 144.000 Ksps
+ * 
+ * System gain = 1.002382037500752388 (+0.02067 dB), Maximum at -19004.2730 Hz (0.1953% is over unity)
+ * 
+ * Passband gain = 0.9976931126 .. 1.0023820375 (-0.02006 .. +0.02067 dB)
+ * Minimum at -19200.0000 Hz, Maximum at -19004.2730 Hz
+ * Median = 1.0010755714 (+0.00934 dB) Mean = 1.0006571665 (+0.00571 dB)
+ * MAD = 0.0011411062 STD = 0.0015444259
+ * 
+ * Stopband atten = 0.0470828965 .. 0.0000132892 (-26.54274 .. -97.53000 dB)
+ * Minimum at -42807.9600 Hz, Maximum at -9721.8899 Hz
+ * Median = 0.0331689391 (-29.58537 dB) Mean = 0.0298688373 (-30.49563 dB)
+ * MAD = 0.0115802541 STD = 0.0144510072
+ */
+pct_1q15_t pilot_144K_real[45];
+pct_1q15_t pilot_144K_imag[45];
+
+/**
+ * FM 19 kHz pilot extractor for 144.000 Ksps
+ * 
+ * System gain = 0.955777427630129739 (-0.39286 dB), Maximum at -19004.2730 Hz (0.0000% is over unity)
+ * 
+ * Passband gain = 0.9513943455 .. 0.9557774276 (-0.43279 .. -0.39286 dB)
+ * Minimum at -18800.0000 Hz, Maximum at -19004.2730 Hz
+ * Median = 0.9545599409 (-0.40394 dB) Mean = 0.9541697113 (-0.40749 dB)
+ * MAD = 0.0010599229 STD = 0.0014393255
+ * 
+ * Stopband atten = 0.0487921475 .. 0.0000050989 (-26.23300 .. -105.85051 dB)
+ * Minimum at -24269.5642 Hz, Maximum at -51773.8982 Hz
+ * Median = 0.0343565580 (-29.27981 dB) Mean = 0.0309451965 (-30.18814 dB)
+ * MAD = 0.0120005896 STD = 0.0149735410
+ */
+float complex pilot2_144K_c[43];
+
+/**
+ * FM 19 kHz pilot extractor for 144.000 Ksps
+ * 
+ * System gain = 0.955742332968391062 (-0.39318 dB), Maximum at -19004.2730 Hz (0.0000% is over unity)
+ * 
+ * Passband gain = 0.9513627379 .. 0.9557423330 (-0.43308 .. -0.39318 dB)
+ * Minimum at -18800.0000 Hz, Maximum at -19004.2730 Hz
+ * Median = 0.9545250093 (-0.40425 dB) Mean = 0.9541348943 (-0.40780 dB)
+ * MAD = 0.0010605298 STD = 0.0014391207
+ * 
+ * Stopband atten = 0.0487839592 .. 0.0000014349 (-26.23446 .. -116.86385 dB)
+ * Minimum at -33270.6629 Hz, Maximum at -31635.6977 Hz
+ * Median = 0.0343387439 (-29.28431 dB) Mean = 0.0309351625 (-30.19095 dB)
+ * MAD = 0.0119968691 STD = 0.0149687413
+ */
+pct_1q15_t pilot2_144K_real[43];
+pct_1q15_t pilot2_144K_imag[43];
+
+/**
+ * Antialias filter for 144.000 -> 24.000 Ksps decimation for RDS resampling
+ * 
+ * System gain = 1.000001512082984823 (+0.00001 dB), Maximum at 1318.5203 Hz (0.9515% is over unity)
+ * 
+ * Passband gain = 0.9999985213 .. 1.0000015121 (-0.00001 .. +0.00001 dB)
+ * Minimum at 1650.0000 Hz, Maximum at 1318.5203 Hz
+ * Median = 0.9999995470 (-0.00000 dB) Mean = 0.9999997855 (-0.00000 dB)
+ * MAD = 0.0000009405 STD = 0.0000010816
+ * 
+ * Stopband atten = 0.0000015027 .. 0.0000000005 (-116.46248 .. -186.35476 dB)
+ * Minimum at 24383.8359 Hz, Maximum at 71393.4806 Hz
+ * Median = 0.0000010394 (-119.66414 dB) Mean = 0.0000009388 (-120.54825 dB)
+ * MAD = 0.0000003692 STD = 0.0000004571
+ */
+float rdsdecimate_144K_f[33];
+
+/**
+ * Antialias filter for 144.000 -> 24.000 Ksps decimation for RDS resampling
+ * 
+ * System gain = 0.999948095249497682 (-0.00045 dB), Maximum at 1503.1132 Hz (0.0000% is over unity)
+ * 
+ * Passband gain = 0.9999389648 .. 0.9999480952 (-0.00053 .. -0.00045 dB)
+ * Minimum at 0.0000 Hz, Maximum at 1503.1132 Hz
+ * Median = 0.9999423139 (-0.00050 dB) Mean = 0.9999430145 (-0.00049 dB)
+ * MAD = 0.0000029989 STD = 0.0000033638
+ * 
+ * Stopband atten = 0.0000977184 .. 0.0000001218 (-80.20048 .. -138.28395 dB)
+ * Minimum at 22350.0000 Hz, Maximum at 24656.3301 Hz
+ * Median = 0.0000588541 (-84.60447 dB) Mean = 0.0000587306 (-84.62271 dB)
+ * MAD = 0.0000224681 STD = 0.0000272194
+ */
+pct_1q15_t rdsdecimate_144K[33];
+
+/**
+ * Antialias filter for 456.000 -> 19.000 Ksps interpolation for RDS resampling
+ * 
+ * System gain = 1.000037313296290309 (+0.00032 dB), Maximum at 1169.0880 Hz (0.3773% is over unity)
+ * 
+ * Passband gain = 0.9999631221 .. 1.0000373133 (-0.00032 .. +0.00032 dB)
+ * Minimum at 0.0000 Hz, Maximum at 1169.0880 Hz
+ * Median = 1.0000024887 (+0.00002 dB) Mean = 1.0000013020 (+0.00001 dB)
+ * MAD = 0.0000263691 STD = 0.0000266105
+ * 
+ * Stopband atten = 0.0000375870 .. 0.0000000220 (-88.49924 .. -153.15110 dB)
+ * Minimum at 36798.4373 Hz, Maximum at 36464.4122 Hz
+ * Median = 0.0000259381 (-91.72122 dB) Mean = 0.0000234840 (-92.58455 dB)
+ * MAD = 0.0000093649 STD = 0.0000114632
+ */
+float rdsresample_24K_f[115];
+
+/**
+ * Antialias filter for 456.000 -> 19.000 Ksps interpolation for RDS resampling
+ * 
+ * System gain = 1.000087739181797941 (+0.00076 dB), Maximum at 1113.4172 Hz (0.7303% is over unity)
+ * 
+ * Passband gain = 0.9999968829 .. 1.0000877392 (-0.00003 .. +0.00076 dB)
+ * Minimum at 1650.0000 Hz, Maximum at 1113.4172 Hz
+ * Median = 1.0000580401 (+0.00050 dB) Mean = 1.0000567406 (+0.00049 dB)
+ * MAD = 0.0000207333 STD = 0.0000239200
+ * 
+ * Stopband atten = 0.0001816378 .. 0.0000000359 (-74.81588 .. -148.89655 dB)
+ * Minimum at 19985.8381 Hz, Maximum at 152788.6705 Hz
+ * Median = 0.0000734299 (-82.68254 dB) Mean = 0.0000737892 (-82.64015 dB)
+ * MAD = 0.0000322409 STD = 0.0000460583
+ */
+pct_1q15_t rdsresample_24K[115];
+
+/**
+ * RDS blocker for 144.000 Ksps
+ * 
+ * System gain = 1.000998250229261810 (+0.00867 dB), Maximum at 12780.8570 Hz (10.8616% is over unity)
+ * 
+ * Passband gain = 0.9990020007 .. 1.0009982502 (-0.00867 .. +0.00867 dB)
+ * Minimum at 7163.9604 Hz, Maximum at 12780.8570 Hz
+ * Median = 1.0000652056 (+0.00057 dB) Mean = 1.0000339638 (+0.00030 dB)
+ * MAD = 0.0006949229 STD = 0.0007025465
+ * 
+ * Stopband atten = 0.0000499372 .. 0.0000000640 (-86.03152 .. -143.87466 dB)
+ * Minimum at 56749.1149 Hz, Maximum at 69160.7862 Hz
+ * Median = 0.0000335789 (-89.47868 dB) Mean = 0.0000306074 (-90.28346 dB)
+ * MAD = 0.0000124187 STD = 0.0000150667
+ */
+float killrds_144K_f[13];
+
+/**
+ * RDS blocker for 144.000 Ksps
+ * 
+ * System gain = 1.001098632812500000 (+0.00954 dB), Maximum at 0.0000 Hz (11.1789% is over unity)
+ * 
+ * Passband gain = 0.9990001519 .. 1.0010986328 (-0.00869 .. +0.00954 dB)
+ * Minimum at 15000.0000 Hz, Maximum at 0.0000 Hz
+ * Median = 1.0001140530 (+0.00099 dB) Mean = 1.0000835809 (+0.00073 dB)
+ * MAD = 0.0006936712 STD = 0.0007029582
+ * 
+ * Stopband atten = 0.0000769154 .. 0.0000000000 (-82.27974 .. -654.30719 dB)
+ * Minimum at 66321.5725 Hz, Maximum at 72000.0000 Hz
+ * Median = 0.0000342439 (-89.30834 dB) Mean = 0.0000365259 (-88.74797 dB)
+ * MAD = 0.0000180522 STD = 0.0000233113
+ */
+pct_1q15_t killrds_144K[13];
+
+/**
+ * 8x oversampling RRC filter for RDS
+ * 
+ * System gain = 1.539537990706171477 (+3.74781 dB), Maximum at 929.0074 Hz (11.4610% is over unity)
+ * 
+ * Passband gain = 0.0000000000 .. 1.5395379907 (-356.85348 .. +3.74781 dB)
+ * Minimum at 0.0000 Hz, Maximum at 929.0074 Hz
+ * Median = 0.9098621364 (-0.82049 dB) Mean = 0.8482794500 (-1.42922 dB)
+ * MAD = 0.4964309170 STD = 0.5290202601
+ * 
+ * Stopband atten = 0.0004801772 .. 0.0000000000 (-66.37197 .. -352.41134 dB)
+ * Minimum at 3355.3290 Hz, Maximum at 9500.0000 Hz
+ * Median = 0.0001367396 (-77.28211 dB) Mean = 0.0001700234 (-75.38983 dB)
+ * MAD = 0.0000922569 STD = 0.0001361198
+ */
+float rdsrrcprototype_19K_f[151];
+
+/**
+ * 8x oversampling RRC filter for RDS
+ * 
+ * System gain = 1.539517215148026308 (+3.74769 dB), Maximum at 929.0074 Hz (11.4610% is over unity)
+ * 
+ * Passband gain = 0.0000000000 .. 1.5395172151 (-Inf .. +3.74769 dB)
+ * Minimum at 0.0000 Hz, Maximum at 929.0074 Hz
+ * Median = 0.9097990913 (-0.82109 dB) Mean = 0.8482755994 (-1.42926 dB)
+ * MAD = 0.4965474875 STD = 0.5290260084
+ * 
+ * Stopband atten = 0.0005968282 .. 0.0000000000 (-64.48301 .. -351.47482 dB)
+ * Minimum at 3743.8652 Hz, Maximum at 9500.0000 Hz
+ * Median = 0.0001588528 (-75.98010 dB) Mean = 0.0001892183 (-74.46074 dB)
+ * MAD = 0.0000948049 STD = 0.0001386038
+ */
+pct_1q15_t rdsrrcprototype_19K[151];
+
+/**
+ * Quick antialias filter for 243.750 Ksps baseband halving
+ * 
+ * System gain = 1.000250845860276794 (+0.00218 dB), Maximum at 51943.0625 Hz (20.1977% is over unity)
+ * 
+ * Passband gain = 0.9997496702 .. 1.0002508459 (-0.00217 .. +0.00218 dB)
+ * Minimum at 17230.0391 Hz, Maximum at 51943.0625 Hz
+ * Median = 0.9999696735 (-0.00026 dB) Mean = 0.9999835697 (-0.00014 dB)
+ * MAD = 0.0001813810 STD = 0.0001804633
+ * 
+ * Stopband atten = 0.0496368675 .. 0.0000197294 (-26.08391 .. -94.09771 dB)
+ * Minimum at 85748.4587 Hz, Maximum at 96595.3486 Hz
+ * Median = 0.0349322926 (-29.13546 dB) Mean = 0.0315140073 (-30.02993 dB)
+ * MAD = 0.0122907613 STD = 0.0152798794
+ */
+float quickaudiohalvernords_243K75_f[37];
+
+/**
+ * Quick antialias filter for 243.750 Ksps baseband halving
+ * 
+ * System gain = 1.000322795359531725 (+0.00280 dB), Maximum at 10534.4280 Hz (20.7835% is over unity)
+ * 
+ * Passband gain = 0.9996478385 .. 1.0003227954 (-0.00306 .. +0.00280 dB)
+ * Minimum at 17349.0722 Hz, Maximum at 10534.4280 Hz
+ * Median = 0.9999808395 (-0.00017 dB) Mean = 0.9999849815 (-0.00013 dB)
+ * MAD = 0.0001898448 STD = 0.0002098134
+ * 
+ * Stopband atten = 0.0497131348 .. 0.0000020389 (-26.07058 .. -113.81190 dB)
+ * Minimum at 121875.0000 Hz, Maximum at 96595.3486 Hz
+ * Median = 0.0349260175 (-29.13702 dB) Mean = 0.0315150033 (-30.02965 dB)
+ * MAD = 0.0122955214 STD = 0.0152803872
+ */
+pct_1q15_t quickaudiohalvernords_243K75[37];
+
+/**
+ * Antialias filter for 243.750 -> 121.875 Ksps decimation for baseband halving
+ * 
+ * System gain = 1.001590994801153434 (+0.01381 dB), Maximum at 45991.4083 Hz (21.8330% is over unity)
+ * 
+ * Passband gain = 0.9984072621 .. 1.0015909948 (-0.01385 .. +0.01381 dB)
+ * Minimum at 49398.7303 Hz, Maximum at 45991.4083 Hz
+ * Median = 1.0000136515 (+0.00012 dB) Mean = 1.0000062202 (+0.00005 dB)
+ * MAD = 0.0011221646 STD = 0.0011232363
+ * 
+ * Stopband atten = 0.0000797041 .. 0.0000000409 (-81.97038 .. -147.76899 dB)
+ * Minimum at 69515.3217 Hz, Maximum at 112114.2870 Hz
+ * Median = 0.0000561764 (-85.00893 dB) Mean = 0.0000505693 (-85.92226 dB)
+ * MAD = 0.0000195912 STD = 0.0000244560
+ */
+float audiohalvernords_243K75_f[61];
+
+/**
+ * Antialias filter for 243.750 -> 121.875 Ksps decimation for baseband halving
+ * 
+ * System gain = 1.001674697763274002 (+0.01453 dB), Maximum at 51972.8208 Hz (21.8819% is over unity)
+ * 
+ * Passband gain = 0.9982749066 .. 1.0016746978 (-0.01500 .. +0.01453 dB)
+ * Minimum at 34073.2206 Hz, Maximum at 51972.8208 Hz
+ * Median = 1.0000138893 (+0.00012 dB) Mean = 1.0000074838 (+0.00007 dB)
+ * MAD = 0.0011212230 STD = 0.0011262120
+ * 
+ * Stopband atten = 0.0002105137 .. 0.0000000154 (-73.53439 .. -156.26640 dB)
+ * Minimum at 77594.6923 Hz, Maximum at 84067.1163 Hz
+ * Median = 0.0000619459 (-84.15974 dB) Mean = 0.0000732719 (-82.70125 dB)
+ * MAD = 0.0000372195 STD = 0.0000536773
+ */
+pct_1q15_t audiohalvernords_243K75[61];
+
+/**
+ * FM audio extractor for 121.875 Ksps
+ * 
+ * System gain = 1.001271589510632554 (+0.01104 dB), Maximum at 11672.6819 Hz (12.4237% is over unity)
+ * 
+ * Passband gain = 0.9987303526 .. 1.0012715895 (-0.01104 .. +0.01104 dB)
+ * Minimum at 9857.4274 Hz, Maximum at 11672.6819 Hz
+ * Median = 1.0000188441 (+0.00016 dB) Mean = 1.0000094485 (+0.00008 dB)
+ * MAD = 0.0008953533 STD = 0.0008972052
+ * 
+ * Stopband atten = 0.0000636094 .. 0.0000000197 (-83.92958 .. -154.12957 dB)
+ * Minimum at 23308.1660 Hz, Maximum at 54041.0206 Hz
+ * Median = 0.0000448701 (-86.96085 dB) Mean = 0.0000403958 (-87.87328 dB)
+ * MAD = 0.0000156173 STD = 0.0000195343
+ */
+float audiolowpass_121K875_f[63];
+
+/**
+ * FM audio extractor for 121.875 Ksps
+ * 
+ * System gain = 1.001419393997585505 (+0.01232 dB), Maximum at 7952.8980 Hz (12.3627% is over unity)
+ * 
+ * Passband gain = 0.9986125810 .. 1.0014193940 (-0.01206 .. +0.01232 dB)
+ * Minimum at 9902.0648 Hz, Maximum at 7952.8980 Hz
+ * Median = 1.0000076236 (+0.00007 dB) Mean = 0.9999993181 (-0.00001 dB)
+ * MAD = 0.0009205817 STD = 0.0009295903
+ * 
+ * Stopband atten = 0.0002441406 .. 0.0000000105 (-72.24720 .. -159.61538 dB)
+ * Minimum at 60937.5000 Hz, Maximum at 32510.9114 Hz
+ * Median = 0.0000454440 (-86.85046 dB) Mean = 0.0000595935 (-84.49602 dB)
+ * MAD = 0.0000294299 STD = 0.0000499865
+ */
+pct_1q15_t audiolowpass_121K875[63];
+
+/**
+ * FM 19 kHz pilot extractor for 121.875 Ksps
+ * 
+ * System gain = 1.002216191407812262 (+0.01923 dB), Maximum at -19000.6562 Hz (0.2258% is over unity)
+ * 
+ * Passband gain = 0.9975709300 .. 1.0022161914 (-0.02112 .. +0.01923 dB)
+ * Minimum at -19200.0000 Hz, Maximum at -19000.6562 Hz
+ * Median = 1.0009707014 (+0.00843 dB) Mean = 1.0005968727 (+0.00518 dB)
+ * MAD = 0.0010788568 STD = 0.0014586246
+ * 
+ * Stopband atten = 0.0495450127 .. 0.0000001616 (-26.10000 .. -135.83204 dB)
+ * Minimum at 41936.8438 Hz, Maximum at -12543.1113 Hz
+ * Median = 0.0343333717 (-29.28567 dB) Mean = 0.0309402268 (-30.18953 dB)
+ * MAD = 0.0120130542 STD = 0.0149724367
+ */
+float complex pilot_121K875_c[37];
+
+/**
+ * FM 19 kHz pilot extractor for 121.875 Ksps
+ * 
+ * System gain = 1.002292705114567806 (+0.01989 dB), Maximum at -19000.6562 Hz (0.2258% is over unity)
+ * 
+ * Passband gain = 0.9976408835 .. 1.0022927051 (-0.02052 .. +0.01989 dB)
+ * Minimum at -18800.0000 Hz, Maximum at -19000.6562 Hz
+ * Median = 1.0010439118 (+0.00906 dB) Mean = 1.0006732298 (+0.00585 dB)
+ * MAD = 0.0010832821 STD = 0.0014587306
+ * 
+ * Stopband atten = 0.0495708395 .. 0.0000175334 (-26.09547 .. -95.12270 dB)
+ * Minimum at 41936.8438 Hz, Maximum at -3273.4098 Hz
+ * Median = 0.0343295175 (-29.28665 dB) Mean = 0.0309385363 (-30.19000 dB)
+ * MAD = 0.0120081784 STD = 0.0149714303
+ */
+pct_1q15_t pilot_121K875_real[37];
+pct_1q15_t pilot_121K875_imag[37];
+
+/**
+ * FM 19 kHz pilot extractor for 121.875 Ksps
+ * 
+ * System gain = 0.958006056102533643 (-0.37263 dB), Maximum at -19000.6562 Hz (0.0000% is over unity)
+ * 
+ * Passband gain = 0.9535652189 .. 0.9580060561 (-0.41299 .. -0.37263 dB)
+ * Minimum at -18800.0000 Hz, Maximum at -19000.6562 Hz
+ * Median = 0.9568152070 (-0.38344 dB) Mean = 0.9564582322 (-0.38668 dB)
+ * MAD = 0.0010316977 STD = 0.0013942205
+ * 
+ * Stopband atten = 0.0465242656 .. 0.0000043703 (-26.64641 .. -107.18987 dB)
+ * Minimum at -24238.1120 Hz, Maximum at -48000.0916 Hz
+ * Median = 0.0328084795 (-29.68028 dB) Mean = 0.0295537590 (-30.58775 dB)
+ * MAD = 0.0114657405 STD = 0.0143010883
+ */
+float complex pilot2_121K875_c[37];
+
+/**
+ * FM 19 kHz pilot extractor for 121.875 Ksps
+ * 
+ * System gain = 0.957987524540577229 (-0.37280 dB), Maximum at -19000.6562 Hz (0.0000% is over unity)
+ * 
+ * Passband gain = 0.9535401109 .. 0.9579875245 (-0.41322 .. -0.37280 dB)
+ * Minimum at -18800.0000 Hz, Maximum at -19000.6562 Hz
+ * Median = 0.9567932711 (-0.38364 dB) Mean = 0.9564396782 (-0.38685 dB)
+ * MAD = 0.0010363105 STD = 0.0013942049
+ * 
+ * Stopband atten = 0.0466598188 .. 0.0000031559 (-26.62114 .. -110.01766 dB)
+ * Minimum at -13763.2005 Hz, Maximum at 16701.8298 Hz
+ * Median = 0.0328039106 (-29.68149 dB) Mean = 0.0295497267 (-30.58893 dB)
+ * MAD = 0.0114701023 STD = 0.0142992639
+ */
+pct_1q15_t pilot2_121K875_real[37];
+pct_1q15_t pilot2_121K875_imag[37];
+
+/**
+ * RDS blocker for 121.875 Ksps
+ * 
+ * System gain = 1.001063624377928507 (+0.00923 dB), Maximum at 12773.7379 Hz (12.8265% is over unity)
+ * 
+ * Passband gain = 0.9989363645 .. 1.0010636244 (-0.00924 .. +0.00923 dB)
+ * Minimum at 7156.8642 Hz, Maximum at 12773.7379 Hz
+ * Median = 1.0000697473 (+0.00061 dB) Mean = 1.0000362155 (+0.00031 dB)
+ * MAD = 0.0007404238 STD = 0.0007486630
+ * 
+ * Stopband atten = 0.0000532132 .. 0.0000001012 (-85.47962 .. -139.89691 dB)
+ * Minimum at 56897.8147 Hz, Maximum at 58705.6297 Hz
+ * Median = 0.0000371388 (-88.60345 dB) Mean = 0.0000335928 (-89.47507 dB)
+ * MAD = 0.0000133636 STD = 0.0000164033
+ */
+float killrds_121K875_f[11];
+
+/**
+ * RDS blocker for 121.875 Ksps
+ * 
+ * System gain = 1.001098632812500000 (+0.00954 dB), Maximum at 0.0000 Hz (12.7410% is over unity)
+ * 
+ * Passband gain = 0.9988947878 .. 1.0010986328 (-0.00961 .. +0.00954 dB)
+ * Minimum at 15000.0000 Hz, Maximum at 0.0000 Hz
+ * Median = 1.0000564640 (+0.00049 dB) Mean = 1.0000233058 (+0.00020 dB)
+ * MAD = 0.0007425054 STD = 0.0007516309
+ * 
+ * Stopband atten = 0.0000963372 .. 0.0000000000 (-80.32412 .. -Inf dB)
+ * Minimum at 56979.6499 Hz, Maximum at 60937.5000 Hz
+ * Median = 0.0000510082 (-85.84720 dB) Mean = 0.0000496480 (-86.08196 dB)
+ * MAD = 0.0000337007 STD = 0.0000339379
+ */
+pct_1q15_t killrds_121K875[11];
+
+/**
+ * FM de-emphasis filter for 48.000 Ksps (EU)
+ * 
+ * System gain = 1.000000085388929483 (+0.00000 dB), Maximum at 0.0000 Hz (0.0122% is over unity)
+ * 
+ * Passband gain = 0.0000000000 .. 1.0000000854 (-337.75826 .. +0.00000 dB)
+ * Minimum at 24000.0000 Hz, Maximum at 0.0000 Hz
+ * Median = 0.2068295689 (-13.68775 dB) Mean = 0.3078768772 (-10.23246 dB)
+ * MAD = 0.1470931092 STD = 0.2824369232
+ */
+float deemph_eu_48K_f[5];
+
+/**
+ * FM de-emphasis filter for 48.000 Ksps (EU)
+ * 
+ * System gain = 0.999912564483693256 (-0.00076 dB), Maximum at 0.0000 Hz (0.0000% is over unity)
+ * 
+ * Passband gain = 0.0000000000 .. 0.9999125645 (-337.75868 .. -0.00076 dB)
+ * Minimum at 24000.0000 Hz, Maximum at 0.0000 Hz
+ * Median = 0.2068190027 (-13.68819 dB) Mean = 0.3078568343 (-10.23302 dB)
+ * MAD = 0.1470855056 STD = 0.2824143853
+ */
+pct_1q15_t deemph_eu_48K[6];
+
+/**
+ * FM de-emphasis filter for 48.000 Ksps (US)
+ * 
+ * System gain = 1.000000060749385078 (+0.00000 dB), Maximum at 0.0000 Hz (0.0122% is over unity)
+ * 
+ * Passband gain = 0.0000000000 .. 1.0000000607 (-341.35093 .. +0.00000 dB)
+ * Minimum at 24000.0000 Hz, Maximum at 0.0000 Hz
+ * Median = 0.1384427924 (-17.17459 dB) Mean = 0.2387257486 (-12.44201 dB)
+ * MAD = 0.1000958376 STD = 0.2563370057
+ */
+float deemph_us_48K_f[5];
+
+/**
+ * FM de-emphasis filter for 48.000 Ksps (US)
+ * 
+ * System gain = 1.000000000000000000 (+0.00000 dB), Maximum at 0.0000 Hz (0.0000% is over unity)
+ * 
+ * Passband gain = 0.0000000000 .. 1.0000000000 (-341.35048 .. +0.00000 dB)
+ * Minimum at 24000.0000 Hz, Maximum at 0.0000 Hz
+ * Median = 0.1384498546 (-17.17415 dB) Mean = 0.2387336833 (-12.44173 dB)
+ * MAD = 0.1001006916 STD = 0.2563405146
+ */
+pct_1q15_t deemph_us_48K[6];
+
+/**
+ * FM de-emphasis filter for 40.625 Ksps (EU)
+ * 
+ * System gain = 0.999999925790501787 (-0.00000 dB), Maximum at 0.0000 Hz (0.0000% is over unity)
+ * 
+ * Passband gain = 0.0000000000 .. 0.9999999258 (-336.25830 .. -0.00000 dB)
+ * Minimum at 20312.5000 Hz, Maximum at 0.0000 Hz
+ * Median = 0.2436755510 (-12.26376 dB) Mean = 0.3401536852 (-9.36650 dB)
+ * MAD = 0.1711793573 STD = 0.2917891851
+ */
+float deemph_eu_40K625_f[5];
+
+/**
+ * FM de-emphasis filter for 40.625 Ksps (EU)
+ * 
+ * System gain = 1.000000000000000000 (+0.00000 dB), Maximum at 0.0000 Hz (0.0000% is over unity)
+ * 
+ * Passband gain = 0.0000000000 .. 1.0000000000 (-336.25791 .. +0.00000 dB)
+ * Minimum at 20312.5000 Hz, Maximum at 0.0000 Hz
+ * Median = 0.2436856998 (-12.26340 dB) Mean = 0.3401622099 (-9.36628 dB)
+ * MAD = 0.1711863132 STD = 0.2917914514
+ */
+pct_1q15_t deemph_eu_40K625[6];
+
+/**
+ * FM de-emphasis filter for 40.625 Ksps (US)
+ * 
+ * System gain = 1.000000000000000000 (+0.00000 dB), Maximum at 0.0000 Hz (0.0000% is over unity)
+ * 
+ * Passband gain = 0.0000000000 .. 1.0000000000 (-339.87961 .. +0.00000 dB)
+ * Minimum at 20312.5000 Hz, Maximum at 0.0000 Hz
+ * Median = 0.1633670180 (-15.73671 dB) Mean = 0.2656031876 (-11.51533 dB)
+ * MAD = 0.1175134442 STD = 0.2675331841
+ */
+float deemph_us_40K625_f[5];
+
+/**
+ * FM de-emphasis filter for 40.625 Ksps (US)
+ * 
+ * System gain = 1.000000000000000000 (+0.00000 dB), Maximum at 0.0000 Hz (0.0000% is over unity)
+ * 
+ * Passband gain = 0.0000000000 .. 1.0000000000 (-339.88013 .. +0.00000 dB)
+ * Minimum at 20312.5000 Hz, Maximum at 0.0000 Hz
+ * Median = 0.1633574926 (-15.73722 dB) Mean = 0.2655933239 (-11.51566 dB)
+ * MAD = 0.1175070653 STD = 0.2675293315
+ */
+pct_1q15_t deemph_us_40K625[6];
+
+#endif
