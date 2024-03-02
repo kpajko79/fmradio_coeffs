@@ -32,6 +32,7 @@ A = [0 pbf*2*pi/Fs 0 0];
 W = [1 0.0001];
 
 b  = firpm(N, F/(Fs/2), A, W, 'differentiator');
+b  = b / 1.000596762275849816;
 Hd = dfilt.dffir(b);
 
 name = sprintf("%dth order differentiator for %.3f Ksps", N, Fs/1000);

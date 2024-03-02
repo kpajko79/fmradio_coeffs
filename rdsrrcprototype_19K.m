@@ -37,6 +37,7 @@ shape = [ 1, 0, 0, 0, 0, 0, 0, 0, -1 ];
 win = kaiser(N+1, Beta);
 b = firrcos(N, Fc, 1, Fs, 'rolloff', 'sqrt', [], win);
 m = conv(b, shape, 'same');
+m = m / 1.539517215148026308;
 
 Hd = dfilt.dffir(m);
 

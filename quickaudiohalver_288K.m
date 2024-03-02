@@ -35,6 +35,7 @@ dens  = 20;
 Dpass = Rippl/20;
 b  = fircband(N, [0 Fpass Fstop Fs/2]/(Fs/2), [1 1 0 0], [Dpass 1], ...
               CEMs, {dens});
+b  = b / 1.000305175781250000;
 Hd = dfilt.dffir(b);
 
 name = sprintf("Quick antialias filter for %.3f Ksps baseband halving", Fs/1000);

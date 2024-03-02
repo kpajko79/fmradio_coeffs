@@ -39,6 +39,7 @@ b  = fircband(N, [0 Fpass Fstop Fs/2]/(Fs/2), [1 1 0 0], [1 Dstop], ...
 
 Fc = (2 * Fct) / Fs;
 m = b .* exp(1j * Fc * pi * (0 : N));
+m = m ./ 1.002382037500752388;
 
 Hd = dfilt.dffir(m);
 

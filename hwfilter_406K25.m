@@ -33,6 +33,7 @@ dens = 20;
 [F, A, W] = genaa(Fs, Fsout, 58650*2);
 
 b  = fircband(N, F/(Fs/2), A, W, CEMs, {dens});
+b  = b / 1.001373923607624894;
 Hd = dfilt.dffir(b);
 
 name = sprintf("Antialias filter for %.3f -> %.3f Ksps decimation for passband reduction", Fs/1000, Fsout/1000);

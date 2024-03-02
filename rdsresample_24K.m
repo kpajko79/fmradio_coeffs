@@ -34,6 +34,7 @@ Fs = Fs * 19;
 [F, A, W] = genaa(Fs, Fsout, 1650);
 
 b  = cfirpm(N, F/(Fs/2), {'multiband', A}, W, {dens}, debug);
+b  = b / 1.000087739181797941;
 Hd = dfilt.dffir(b);
 
 name = sprintf("Antialias filter for %.3f -> %.3f Ksps interpolation for RDS resampling", Fs/1000, Fsout/1000);

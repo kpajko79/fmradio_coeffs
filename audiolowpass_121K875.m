@@ -35,6 +35,7 @@ CEMs  = {'c', 'w'};
 dens  = 20;
 
 b  = fircband(N, F/(Fs/2), A, W, CEMs, {dens});
+b  = b / 1.001419393997585505;
 Hd = dfilt.dffir(b);
 
 name = sprintf("FM audio extractor for %.3f Ksps", Fs/1000);

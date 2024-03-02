@@ -37,6 +37,7 @@ dens  = 20;
 F     = [-Fs/2 Fct-Fstop Fct-Fpass Fct+Fpass Fct+Fstop Fs/2];
 
 b  = cfirpm(N, F/(Fs/2), {'multiband', A}, W, {dens}, debug);
+b  = b / 0.957987524540577229;
 Hd = dfilt.dffir(b);
 
 name = sprintf("FM 19 kHz pilot extractor for %.3f Ksps", Fs/1000);
