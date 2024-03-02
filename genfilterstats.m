@@ -30,7 +30,7 @@ function txt = genfilterstats(Num, Den, Fs, pbfs, sbfs)
 
   pbfs = pbfs * 2 * pi / Fs;
   sbfs = sbfs * 2 * pi / Fs;
-  r = unique([r 0 pbfs sbfs], "sorted"); % add the frequencies of interest
+  r = unique([r 0 pbfs sbfs midpoints(pbfs) midpoints(sbfs)], "sorted"); % add the frequencies of interest
   mag = abs(freqz(Num, Den, r));
   sysgain = max(mag);
   ovr = length(find(mag > 1)) * 100 / length(mag);
@@ -91,5 +91,13 @@ function txt = genfilterstats(Num, Den, Fs, pbfs, sbfs)
                         sbavg, 20 * log10(sbavg));
     txt = txt + sprintf("\\nMAD = %.10f STD = %.10f", ...
                         sbmad, sbstd);
+  end
+end
+
+function [mps] = midpoints(bfs)
+  mps = [];
+
+  for i = 1 : length(bfs) / 2
+    mps(end + 1) = (bfs(2 * i - 1) + bfs(2 * i)) / 2;
   end
 end
