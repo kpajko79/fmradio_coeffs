@@ -24,7 +24,7 @@
  * 
  */
 
-#include <coeffs.h>
+#include "fmradio_coeffs.h"
 
 float quickaudiohalver_288K_f[25] = {
 	-0.0033955162f,  0.0150880357f, -0.0249354672f,  0.0105959298f, 

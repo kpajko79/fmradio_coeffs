@@ -24,8 +24,8 @@
  * 
  */
 
-#ifndef COEFFS__H
-#define COEFFS__H
+#ifndef FMRADIO_COEFFS__H
+#define FMRADIO_COEFFS__H
 
 #include <pct_complex.h>
 
@@ -520,7 +520,7 @@
  * Median = 0.0523712930 (-25.61813 dB) Mean = 0.0472706401 (-26.50817 dB)
  * MAD = 0.0185589937 STD = 0.0229810774
  */
-float quickaudiohalver_288K_f[25];
+extern float quickaudiohalver_288K_f[25];
 
 /**
  * Quick antialias filter for 288.000 Ksps baseband halving
@@ -537,7 +537,7 @@ float quickaudiohalver_288K_f[25];
  * Median = 0.0523393805 (-25.62343 dB) Mean = 0.0472430294 (-26.51325 dB)
  * MAD = 0.0185540344 STD = 0.0229675372
  */
-pct_1q15_t quickaudiohalver_288K[25];
+extern pct_1q15_t quickaudiohalver_288K[25];
 
 /**
  * Antialias filter for 288.000 -> 144.000 Ksps decimation for baseband halving
@@ -554,7 +554,7 @@ pct_1q15_t quickaudiohalver_288K[25];
  * Median = 0.0000403913 (-87.87424 dB) Mean = 0.0000363522 (-88.78938 dB)
  * MAD = 0.0000140835 STD = 0.0000175817
  */
-float audiohalver_288K_f[45];
+extern float audiohalver_288K_f[45];
 
 /**
  * Antialias filter for 288.000 -> 144.000 Ksps decimation for baseband halving
@@ -571,7 +571,7 @@ float audiohalver_288K_f[45];
  * Median = 0.0000448130 (-86.97192 dB) Mean = 0.0000528921 (-85.53218 dB)
  * MAD = 0.0000249898 STD = 0.0000374471
  */
-pct_1q15_t audiohalver_288K[45];
+extern pct_1q15_t audiohalver_288K[45];
 
 /**
  * FM audio extractor for 144.000 Ksps
@@ -588,7 +588,7 @@ pct_1q15_t audiohalver_288K[45];
  * Median = 0.0000448233 (-86.96993 dB) Mean = 0.0000403562 (-87.88179 dB)
  * MAD = 0.0000156393 STD = 0.0000195115
  */
-float audiolowpass_144K_f[73];
+extern float audiolowpass_144K_f[73];
 
 /**
  * FM audio extractor for 144.000 Ksps
@@ -605,7 +605,7 @@ float audiolowpass_144K_f[73];
  * Median = 0.0000491320 (-86.17270 dB) Mean = 0.0000626256 (-84.06497 dB)
  * MAD = 0.0000299448 STD = 0.0000497457
  */
-pct_1q15_t audiolowpass_144K[73];
+extern pct_1q15_t audiolowpass_144K[73];
 
 /**
  * FM 19 kHz pilot extractor for 144.000 Ksps
@@ -622,7 +622,7 @@ pct_1q15_t audiolowpass_144K[73];
  * Median = 0.0330921094 (-29.60551 dB) Mean = 0.0297964674 (-30.51670 dB)
  * MAD = 0.0115576108 STD = 0.0144166219
  */
-float complex pilot_144K_c[45];
+extern float complex pilot_144K_c[45];
 
 /**
  * FM 19 kHz pilot extractor for 144.000 Ksps
@@ -639,8 +639,8 @@ float complex pilot_144K_c[45];
  * Median = 0.0330854235 (-29.60727 dB) Mean = 0.0297939316 (-30.51744 dB)
  * MAD = 0.0115451101 STD = 0.0144150734
  */
-pct_1q15_t pilot_144K_real[45];
-pct_1q15_t pilot_144K_imag[45];
+extern pct_1q15_t pilot_144K_real[45];
+extern pct_1q15_t pilot_144K_imag[45];
 
 /**
  * FM 19 kHz pilot extractor for 144.000 Ksps
@@ -657,7 +657,7 @@ pct_1q15_t pilot_144K_imag[45];
  * Median = 0.0359502430 (-28.88596 dB) Mean = 0.0323791814 (-29.79468 dB)
  * MAD = 0.0125554047 STD = 0.0156661989
  */
-float complex pilot2_144K_c[43];
+extern float complex pilot2_144K_c[43];
 
 /**
  * FM 19 kHz pilot extractor for 144.000 Ksps
@@ -674,8 +674,8 @@ float complex pilot2_144K_c[43];
  * Median = 0.0359496568 (-28.88611 dB) Mean = 0.0323684259 (-29.79757 dB)
  * MAD = 0.0125316517 STD = 0.0156611199
  */
-pct_1q15_t pilot2_144K_real[43];
-pct_1q15_t pilot2_144K_imag[43];
+extern pct_1q15_t pilot2_144K_real[43];
+extern pct_1q15_t pilot2_144K_imag[43];
 
 /**
  * Antialias filter for 144.000 -> 24.000 Ksps decimation for RDS resampling
@@ -692,7 +692,7 @@ pct_1q15_t pilot2_144K_imag[43];
  * Median = 0.0000010343 (-119.70734 dB) Mean = 0.0000009374 (-120.56169 dB)
  * MAD = 0.0000003733 STD = 0.0000004575
  */
-float rdsdecimate_144K_f[33];
+extern float rdsdecimate_144K_f[33];
 
 /**
  * Antialias filter for 144.000 -> 24.000 Ksps decimation for RDS resampling
@@ -709,7 +709,7 @@ float rdsdecimate_144K_f[33];
  * Median = 0.0000588535 (-84.60455 dB) Mean = 0.0000587286 (-84.62301 dB)
  * MAD = 0.0000225232 STD = 0.0000272134
  */
-pct_1q15_t rdsdecimate_144K[33];
+extern pct_1q15_t rdsdecimate_144K[33];
 
 /**
  * Antialias filter for 456.000 -> 19.000 Ksps interpolation for RDS resampling
@@ -726,7 +726,7 @@ pct_1q15_t rdsdecimate_144K[33];
  * Median = 0.0000260023 (-91.69978 dB) Mean = 0.0000235393 (-92.56414 dB)
  * MAD = 0.0000093514 STD = 0.0000114681
  */
-float rdsresample_24K_f[115];
+extern float rdsresample_24K_f[115];
 
 /**
  * Antialias filter for 456.000 -> 19.000 Ksps interpolation for RDS resampling
@@ -743,7 +743,7 @@ float rdsresample_24K_f[115];
  * Median = 0.0000734299 (-82.68254 dB) Mean = 0.0000736786 (-82.65317 dB)
  * MAD = 0.0000322409 STD = 0.0000459904
  */
-pct_1q15_t rdsresample_24K[115];
+extern pct_1q15_t rdsresample_24K[115];
 
 /**
  * RDS blocker for 144.000 Ksps
@@ -760,7 +760,7 @@ pct_1q15_t rdsresample_24K[115];
  * Median = 0.0000335399 (-89.48878 dB) Mean = 0.0000305656 (-90.29535 dB)
  * MAD = 0.0000124139 STD = 0.0000150504
  */
-float killrds_144K_f[13];
+extern float killrds_144K_f[13];
 
 /**
  * RDS blocker for 144.000 Ksps
@@ -777,7 +777,7 @@ float killrds_144K_f[13];
  * Median = 0.0000562667 (-84.99497 dB) Mean = 0.0000578829 (-84.74900 dB)
  * MAD = 0.0000279602 STD = 0.0000314411
  */
-pct_1q15_t killrds_144K[13];
+extern pct_1q15_t killrds_144K[13];
 
 /**
  * 8x oversampling RRC filter for RDS
@@ -794,7 +794,7 @@ pct_1q15_t killrds_144K[13];
  * Median = 0.0000888402 (-81.02781 dB) Mean = 0.0001104434 (-79.13720 dB)
  * MAD = 0.0000599152 STD = 0.0000884105
  */
-float rdsrrcprototype_19K_f[151];
+extern float rdsrrcprototype_19K_f[151];
 
 /**
  * 8x oversampling RRC filter for RDS
@@ -811,7 +811,7 @@ float rdsrrcprototype_19K_f[151];
  * Median = 0.0001253986 (-78.03414 dB) Mean = 0.0001497496 (-76.49268 dB)
  * MAD = 0.0000799562 STD = 0.0001104176
  */
-pct_1q15_t rdsrrcprototype_19K[151];
+extern pct_1q15_t rdsrrcprototype_19K[151];
 
 /**
  * Quick antialias filter for 243.750 Ksps baseband halving
@@ -828,7 +828,7 @@ pct_1q15_t rdsrrcprototype_19K[151];
  * Median = 0.0349139656 (-29.14002 dB) Mean = 0.0315020218 (-30.03323 dB)
  * MAD = 0.0122909123 STD = 0.0152731905
  */
-float quickaudiohalvernords_243K75_f[37];
+extern float quickaudiohalvernords_243K75_f[37];
 
 /**
  * Quick antialias filter for 243.750 Ksps baseband halving
@@ -845,7 +845,7 @@ float quickaudiohalvernords_243K75_f[37];
  * Median = 0.0349291672 (-29.13624 dB) Mean = 0.0315116368 (-30.03058 dB)
  * MAD = 0.0122841147 STD = 0.0152778384
  */
-pct_1q15_t quickaudiohalvernords_243K75[37];
+extern pct_1q15_t quickaudiohalvernords_243K75[37];
 
 /**
  * Antialias filter for 243.750 -> 121.875 Ksps decimation for baseband halving
@@ -862,7 +862,7 @@ pct_1q15_t quickaudiohalvernords_243K75[37];
  * Median = 0.0000561231 (-85.01717 dB) Mean = 0.0000504900 (-85.93590 dB)
  * MAD = 0.0000195317 STD = 0.0000244136
  */
-float audiohalvernords_243K75_f[61];
+extern float audiohalvernords_243K75_f[61];
 
 /**
  * Antialias filter for 243.750 -> 121.875 Ksps decimation for baseband halving
@@ -879,7 +879,7 @@ float audiohalvernords_243K75_f[61];
  * Median = 0.0000541449 (-85.32885 dB) Mean = 0.0000633853 (-83.96023 dB)
  * MAD = 0.0000344356 STD = 0.0000465421
  */
-pct_1q15_t audiohalvernords_243K75[61];
+extern pct_1q15_t audiohalvernords_243K75[61];
 
 /**
  * FM audio extractor for 121.875 Ksps
@@ -896,7 +896,7 @@ pct_1q15_t audiohalvernords_243K75[61];
  * Median = 0.0000447942 (-86.97556 dB) Mean = 0.0000403373 (-87.88587 dB)
  * MAD = 0.0000156091 STD = 0.0000195049
  */
-float audiolowpass_121K875_f[63];
+extern float audiolowpass_121K875_f[63];
 
 /**
  * FM audio extractor for 121.875 Ksps
@@ -913,7 +913,7 @@ float audiolowpass_121K875_f[63];
  * Median = 0.0000504755 (-85.93839 dB) Mean = 0.0000644554 (-83.81482 dB)
  * MAD = 0.0000280871 STD = 0.0000492137
  */
-pct_1q15_t audiolowpass_121K875[63];
+extern pct_1q15_t audiolowpass_121K875[63];
 
 /**
  * FM 19 kHz pilot extractor for 121.875 Ksps
@@ -930,7 +930,7 @@ pct_1q15_t audiolowpass_121K875[63];
  * Median = 0.0342494204 (-29.30694 dB) Mean = 0.0308685304 (-30.20968 dB)
  * MAD = 0.0119872929 STD = 0.0149374934
  */
-float complex pilot_121K875_c[37];
+extern float complex pilot_121K875_c[37];
 
 /**
  * FM 19 kHz pilot extractor for 121.875 Ksps
@@ -947,8 +947,8 @@ float complex pilot_121K875_c[37];
  * Median = 0.0342683608 (-29.30213 dB) Mean = 0.0308713811 (-30.20888 dB)
  * MAD = 0.0119793606 STD = 0.0149386569
  */
-pct_1q15_t pilot_121K875_real[37];
-pct_1q15_t pilot_121K875_imag[37];
+extern pct_1q15_t pilot_121K875_real[37];
+extern pct_1q15_t pilot_121K875_imag[37];
 
 /**
  * FM 19 kHz pilot extractor for 121.875 Ksps
@@ -965,7 +965,7 @@ pct_1q15_t pilot_121K875_imag[37];
  * Median = 0.0342406126 (-29.30917 dB) Mean = 0.0308489208 (-30.21520 dB)
  * MAD = 0.0119742716 STD = 0.0149275637
  */
-float complex pilot2_121K875_c[37];
+extern float complex pilot2_121K875_c[37];
 
 /**
  * FM 19 kHz pilot extractor for 121.875 Ksps
@@ -982,8 +982,8 @@ float complex pilot2_121K875_c[37];
  * Median = 0.0342501089 (-29.30676 dB) Mean = 0.0308463896 (-30.21591 dB)
  * MAD = 0.0119654132 STD = 0.0149264802
  */
-pct_1q15_t pilot2_121K875_real[37];
-pct_1q15_t pilot2_121K875_imag[37];
+extern pct_1q15_t pilot2_121K875_real[37];
+extern pct_1q15_t pilot2_121K875_imag[37];
 
 /**
  * RDS blocker for 121.875 Ksps
@@ -1000,7 +1000,7 @@ pct_1q15_t pilot2_121K875_imag[37];
  * Median = 0.0000370720 (-88.61909 dB) Mean = 0.0000335391 (-89.48897 dB)
  * MAD = 0.0000133452 STD = 0.0000163781
  */
-float killrds_121K875_f[11];
+extern float killrds_121K875_f[11];
 
 /**
  * RDS blocker for 121.875 Ksps
@@ -1017,7 +1017,7 @@ float killrds_121K875_f[11];
  * Median = 0.0000303126 (-90.36752 dB) Mean = 0.0000365796 (-88.73523 dB)
  * MAD = 0.0000183584 STD = 0.0000226870
  */
-pct_1q15_t killrds_121K875[11];
+extern pct_1q15_t killrds_121K875[11];
 
 /**
  * FM de-emphasis filter for 48.000 Ksps (EU)
@@ -1029,7 +1029,7 @@ pct_1q15_t killrds_121K875[11];
  * Median = 0.2068295657 (-13.68775 dB) Mean = 0.3078645438 (-10.23281 dB)
  * MAD = 0.1470713286 STD = 0.2824218904
  */
-float deemph_eu_48K_f[5];
+extern float deemph_eu_48K_f[5];
 
 /**
  * FM de-emphasis filter for 48.000 Ksps (EU)
@@ -1041,7 +1041,7 @@ float deemph_eu_48K_f[5];
  * Median = 0.2068189996 (-13.68819 dB) Mean = 0.3078445021 (-10.23337 dB)
  * MAD = 0.1470637260 STD = 0.2823993537
  */
-pct_1q15_t deemph_eu_48K[6];
+extern pct_1q15_t deemph_eu_48K[6];
 
 /**
  * FM de-emphasis filter for 48.000 Ksps (US)
@@ -1053,7 +1053,7 @@ pct_1q15_t deemph_eu_48K[6];
  * Median = 0.1384427901 (-17.17459 dB) Mean = 0.2387135085 (-12.44246 dB)
  * MAD = 0.1000931374 STD = 0.2563237540
  */
-float deemph_us_48K_f[5];
+extern float deemph_us_48K_f[5];
 
 /**
  * FM de-emphasis filter for 48.000 Ksps (US)
@@ -1065,7 +1065,7 @@ float deemph_us_48K_f[5];
  * Median = 0.1384498522 (-17.17415 dB) Mean = 0.2387214431 (-12.44217 dB)
  * MAD = 0.1000977746 STD = 0.2563272628
  */
-pct_1q15_t deemph_us_48K[6];
+extern pct_1q15_t deemph_us_48K[6];
 
 /**
  * FM de-emphasis filter for 40.625 Ksps (EU)
@@ -1077,7 +1077,7 @@ pct_1q15_t deemph_us_48K[6];
  * Median = 0.2436755476 (-12.26376 dB) Mean = 0.3401419095 (-9.36680 dB)
  * MAD = 0.1711534518 STD = 0.2917733220
  */
-float deemph_eu_40K625_f[5];
+extern float deemph_eu_40K625_f[5];
 
 /**
  * FM de-emphasis filter for 40.625 Ksps (EU)
@@ -1089,7 +1089,7 @@ float deemph_eu_40K625_f[5];
  * Median = 0.2436856964 (-12.26340 dB) Mean = 0.3401504344 (-9.36658 dB)
  * MAD = 0.1711604067 STD = 0.2917755881
  */
-pct_1q15_t deemph_eu_40K625[6];
+extern pct_1q15_t deemph_eu_40K625[6];
 
 /**
  * FM de-emphasis filter for 40.625 Ksps (US)
@@ -1101,7 +1101,7 @@ pct_1q15_t deemph_eu_40K625[6];
  * Median = 0.1633670153 (-15.73671 dB) Mean = 0.2655907091 (-11.51574 dB)
  * MAD = 0.1175112483 STD = 0.2675192391
  */
-float deemph_us_40K625_f[5];
+extern float deemph_us_40K625_f[5];
 
 /**
  * FM de-emphasis filter for 40.625 Ksps (US)
@@ -1113,6 +1113,6 @@ float deemph_us_40K625_f[5];
  * Median = 0.1633574899 (-15.73722 dB) Mean = 0.2655808455 (-11.51607 dB)
  * MAD = 0.1175052749 STD = 0.2675153867
  */
-pct_1q15_t deemph_us_40K625[6];
+extern pct_1q15_t deemph_us_40K625[6];
 
 #endif
