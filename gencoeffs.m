@@ -44,16 +44,16 @@ function gencoeffs
   lic = strrep(lic, char(10), "\n");
   cmt = gencomment(lic) + "\n";
 
-  cfile = fopen("coeffs.c", 'w', 'n', "US-ASCII");
-  hfile = fopen("coeffs.h", 'w', 'n', "US-ASCII");
+  cfile = fopen("fmradio_coeffs.c", 'w', 'n', "US-ASCII");
+  hfile = fopen("fmradio_coeffs.h", 'w', 'n', "US-ASCII");
 
   fprintf(hfile, cmt);
-  fprintf(hfile, "#ifndef COEFFS__H\n");
-  fprintf(hfile, "#define COEFFS__H\n\n");
+  fprintf(hfile, "#ifndef FMRADIO_COEFFS__H\n");
+  fprintf(hfile, "#define FMRADIO_COEFFS__H\n\n");
   fprintf(hfile, "#include <pct_complex.h>\n\n");
 
   fprintf(cfile, cmt);
-  fprintf(cfile, "#include <coeffs.h>\n\n");
+  fprintf(cfile, '#include "fmradio_coeffs.h"\n\n');
 
   for coeff = 1:length(hwcoeffs)
     genhwcoeffs(cfile, hfile, hwcoeffs(coeff));
