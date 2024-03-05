@@ -33,6 +33,10 @@ if isprop(Hd, "ProductMode")
   set(Hd, 'ProductMode', 'SpecifyPrecision');
 end
 
+if isprop(Hd, "AccumMode")
+  set(Hd, 'AccumMode', 'SpecifyPrecision');
+end
+
 set(Hd, ...
     'Signed',            true, ...
     'CoeffWordLength',   16, ...
@@ -45,6 +49,9 @@ set(Hd, ...
     'ProductWordLength', 32, ...
     'RoundMode',         'floor');
 
+if isprop(Hd, "CastBeforeSum")
+  set(Hd, 'CastBeforeSum', true);
+end
 if isprop(Hd, "DenFracLength")
   set(Hd, 'DenFracLength', 15);
 end
