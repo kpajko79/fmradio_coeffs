@@ -61,7 +61,6 @@ end
 function gencoeffs_f(cfile, hfile, fn, cmt, cf, Fs, pbfs, sbfs)
   len = length(cf);
   sts = genfilterstats(cf, 1, Fs, pbfs, sbfs);
-  cf = flip(cf);
   fprintf(hfile, gencomment(cmt + "\n\n" + sts));
   fprintf(hfile, "extern float %s_f[%d];\n\n", fn, len);
   fprintf(cfile, "float %s_f[%d] = {\n\t", fn, len);
@@ -77,7 +76,6 @@ end
 function gencoeffs_q(cfile, hfile, fn, cmt, cf, Fs, pbfs, sbfs, bits)
   len = length(cf);
   sts = genfilterstats(cf, 1, Fs, pbfs, sbfs);
-  cf = flip(cf);
   cf = cf .* 2^bits;
   fprintf(hfile, gencomment(cmt + "\n\n" + sts));
   fprintf(hfile, "extern pct_1q15_t %s[%d];\n\n", fn, len);
@@ -94,7 +92,6 @@ end
 function gencoeffs_c(cfile, hfile, fn, cmt, cf, Fs, pbfs, sbfs)
   len = length(cf);
   sts = genfilterstats(cf, 1, Fs, pbfs, sbfs);
-  cf = flip(cf);
   fprintf(hfile, gencomment(cmt + "\n\n" + sts));
   fprintf(hfile, "extern float complex %s_c[%d];\n\n", fn, len);
   fprintf(cfile, "float complex %s_c[%d] = {\n\t", fn, len);
@@ -117,7 +114,6 @@ end
 function gencoeffs_Q(cfile, hfile, fn, cmt, cf, Fs, pbfs, sbfs, bits)
   len = length(cf);
   sts = genfilterstats(cf, 1, Fs, pbfs, sbfs);
-  cf = flip(cf);
   re = real(cf) .* 2^bits;
   im = imag(cf) .* 2^bits;
   fprintf(hfile, gencomment(cmt + "\n\n" + sts));
