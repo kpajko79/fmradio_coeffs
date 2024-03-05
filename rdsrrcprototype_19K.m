@@ -39,6 +39,11 @@ b = firrcos(N, Fc, 1, Fs, 'rolloff', 'sqrt', [], win);
 m = conv(b, shape, 'same');
 m = m / 1.539517215148026308;
 
+% non-decimator FIR filters must have even number of taps in q15
+if ~mod(N, 2)
+  m(end + 1) = 0;
+end
+
 Hd = dfilt.dffir(m);
 
 name = sprintf("%dx oversampling RRC filter for RDS", Fs/(Fc*2));

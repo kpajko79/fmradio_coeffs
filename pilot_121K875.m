@@ -41,6 +41,11 @@ Fc = (2 * Fct) / Fs;
 m = b .* exp(1j * Fc * pi * (0 : N));
 m = m ./ 1.002292705114567806;
 
+% non-decimator FIR filters must have even number of taps in q15
+if ~mod(N, 2)
+  m(end + 1) = 0;
+end
+
 Hd = dfilt.dffir(m);
 
 name = sprintf("FM 19 kHz pilot extractor for %.3f Ksps", Fs/1000);

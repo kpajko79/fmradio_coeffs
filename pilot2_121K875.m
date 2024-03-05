@@ -38,6 +38,12 @@ F     = [-Fs/2 Fct-Fstop Fct-Fpass Fct+Fpass Fct+Fstop Fs/2];
 
 b  = cfirpm(N, F/(Fs/2), {'multiband', A}, W, {dens}, debug);
 b  = b / 0.957987524540577229;
+
+% non-decimator FIR filters must have even number of taps in q15
+if ~mod(N, 2)
+  b(end + 1) = 0;
+end
+
 Hd = dfilt.dffir(b);
 
 name = sprintf("FM 19 kHz pilot extractor for %.3f Ksps", Fs/1000);

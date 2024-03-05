@@ -36,6 +36,12 @@ dens  = 20;
 
 b  = fircband(N, F/(Fs/2), A, W, CEMs, {dens});
 b  = b / 1.001098632812500000;
+
+% non-decimator FIR filters must have even number of taps in q15
+if ~mod(N, 2)
+  b(end + 1) = 0;
+end
+
 Hd = dfilt.dffir(b);
 
 name = sprintf("RDS blocker for %.3f Ksps", Fs/1000);
