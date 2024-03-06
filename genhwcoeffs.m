@@ -38,12 +38,8 @@ function gencoeffs_q(cfile, hfile, fn, cmt, cf, Fs, pbfs, sbfs, bits)
   len = (length(cf) - 1) / 2 + 1;
   sts = genfilterstats(cf, 1, Fs, pbfs, sbfs);
   fprintf(hfile, gencomment(cmt + "\n\n" + sts));
-  fprintf(hfile, "#define COEFFS_%s (const pct_1q15_t[%d]){ \\\n\t", upper(fn), len);
   for i = 1:len
-    fprintf(hfile, "% 6d, ", cf(i) * 2^bits);
-    if ((mod(i, 8) == 0) & (i ~= len))
-      fprintf(hfile, " \\\n\t");
-    end
+    fprintf(hfile, "#define COEFFS_%s_%-2d %6d\n", upper(fn), i, cf(i) * 2^bits);
   end
-  fprintf(hfile, " \\\n}\n\n");
+  fprintf(hfile, "\n");
 end
