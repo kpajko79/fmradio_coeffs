@@ -44,10 +44,21 @@
  * Median = 0.0000620930 (-84.13914 dB) Mean = 0.0000611891 (-84.26652 dB)
  * MAD = 0.0000331100 STD = 0.0000373568
  */
-#define COEFFS_HWFILTER_406K25 (const pct_1q15_t[15]){ \
-	   -47,     19,     86,   -188,     97,    255,   -590,    405,  \
-	   502,  -1535,   1444,    733,  -4644,   8479,  22644,  \
-}
+#define COEFFS_HWFILTER_406K25_1     -47
+#define COEFFS_HWFILTER_406K25_2      19
+#define COEFFS_HWFILTER_406K25_3      86
+#define COEFFS_HWFILTER_406K25_4    -188
+#define COEFFS_HWFILTER_406K25_5      97
+#define COEFFS_HWFILTER_406K25_6     255
+#define COEFFS_HWFILTER_406K25_7    -590
+#define COEFFS_HWFILTER_406K25_8     405
+#define COEFFS_HWFILTER_406K25_9     502
+#define COEFFS_HWFILTER_406K25_10  -1535
+#define COEFFS_HWFILTER_406K25_11   1444
+#define COEFFS_HWFILTER_406K25_12    733
+#define COEFFS_HWFILTER_406K25_13  -4644
+#define COEFFS_HWFILTER_406K25_14   8479
+#define COEFFS_HWFILTER_406K25_15  22644
 
 /**
  * 4th order differentiator for 288.000 Ksps
@@ -610,7 +621,7 @@ extern pct_1q15_t audiolowpass_144K[73];
 /**
  * FM 19 kHz pilot extractor for 144.000 Ksps
  * 
- * System gain = 0.999963408366592366 (-0.00032 dB), Maximum at -19000.0000 Hz (0.0000% is over unity)
+ * System gain = 0.999963408366592144 (-0.00032 dB), Maximum at -19000.0000 Hz (0.0000% is over unity)
  * 
  * Passband gain = 0.9952838393 .. 0.9999634084 (-0.04106 .. -0.00032 dB)
  * Minimum at -19200.0000 Hz, Maximum at -19000.0000 Hz
@@ -622,7 +633,7 @@ extern pct_1q15_t audiolowpass_144K[73];
  * Median = 0.0330921094 (-29.60551 dB) Mean = 0.0297964674 (-30.51670 dB)
  * MAD = 0.0115576108 STD = 0.0144166219
  */
-extern float complex pilot_144K_c[45];
+extern float complex pilot_144K_c[46];
 
 /**
  * FM 19 kHz pilot extractor for 144.000 Ksps
@@ -639,13 +650,13 @@ extern float complex pilot_144K_c[45];
  * Median = 0.0330854235 (-29.60727 dB) Mean = 0.0297939316 (-30.51744 dB)
  * MAD = 0.0115451101 STD = 0.0144150734
  */
-extern pct_1q15_t pilot_144K_real[45];
-extern pct_1q15_t pilot_144K_imag[45];
+extern pct_1q15_t pilot_144K_real[46];
+extern pct_1q15_t pilot_144K_imag[46];
 
 /**
  * FM 19 kHz pilot extractor for 144.000 Ksps
  * 
- * System gain = 1.000038519155947325 (+0.00033 dB), Maximum at -19000.0000 Hz (0.0305% is over unity)
+ * System gain = 1.000038519155947547 (+0.00033 dB), Maximum at -19000.0000 Hz (0.0305% is over unity)
  * 
  * Passband gain = 0.9954506720 .. 1.0000385192 (-0.03961 .. +0.00033 dB)
  * Minimum at -18800.0000 Hz, Maximum at -19000.0000 Hz
@@ -657,12 +668,12 @@ extern pct_1q15_t pilot_144K_imag[45];
  * Median = 0.0359502430 (-28.88596 dB) Mean = 0.0323791814 (-29.79468 dB)
  * MAD = 0.0125554047 STD = 0.0156661989
  */
-extern float complex pilot2_144K_c[43];
+extern float complex pilot2_144K_c[44];
 
 /**
  * FM 19 kHz pilot extractor for 144.000 Ksps
  * 
- * System gain = 1.000130450082784783 (+0.00113 dB), Maximum at -19000.0000 Hz (0.0549% is over unity)
+ * System gain = 1.000130450082785005 (+0.00113 dB), Maximum at -19000.0000 Hz (0.0549% is over unity)
  * 
  * Passband gain = 0.9955448530 .. 1.0001304501 (-0.03878 .. +0.00113 dB)
  * Minimum at -18800.0000 Hz, Maximum at -19000.0000 Hz
@@ -674,8 +685,8 @@ extern float complex pilot2_144K_c[43];
  * Median = 0.0359496568 (-28.88611 dB) Mean = 0.0323684259 (-29.79757 dB)
  * MAD = 0.0125316517 STD = 0.0156611199
  */
-extern pct_1q15_t pilot2_144K_real[43];
-extern pct_1q15_t pilot2_144K_imag[43];
+extern pct_1q15_t pilot2_144K_real[44];
+extern pct_1q15_t pilot2_144K_imag[44];
 
 /**
  * Antialias filter for 144.000 -> 24.000 Ksps decimation for RDS resampling
@@ -760,7 +771,7 @@ extern pct_1q15_t rdsresample_24K[115];
  * Median = 0.0000335399 (-89.48878 dB) Mean = 0.0000305656 (-90.29535 dB)
  * MAD = 0.0000124139 STD = 0.0000150504
  */
-extern float killrds_144K_f[13];
+extern float killrds_144K_f[14];
 
 /**
  * RDS blocker for 144.000 Ksps
@@ -777,12 +788,12 @@ extern float killrds_144K_f[13];
  * Median = 0.0000562667 (-84.99497 dB) Mean = 0.0000578829 (-84.74900 dB)
  * MAD = 0.0000279602 STD = 0.0000314411
  */
-extern pct_1q15_t killrds_144K[13];
+extern pct_1q15_t killrds_144K[14];
 
 /**
  * 8x oversampling RRC filter for RDS
  * 
- * System gain = 1.000013488782479643 (+0.00012 dB), Maximum at 929.0074 Hz (0.0610% is over unity)
+ * System gain = 1.000013488782479421 (+0.00012 dB), Maximum at 929.0074 Hz (0.0610% is over unity)
  * 
  * Passband gain = 0.0000000000 .. 1.0000134888 (-356.45313 .. +0.00012 dB)
  * Minimum at 0.0000 Hz, Maximum at 929.0074 Hz
@@ -794,12 +805,12 @@ extern pct_1q15_t killrds_144K[13];
  * Median = 0.0000888402 (-81.02781 dB) Mean = 0.0001104434 (-79.13720 dB)
  * MAD = 0.0000599152 STD = 0.0000884105
  */
-extern float rdsrrcprototype_19K_f[151];
+extern float rdsrrcprototype_19K_f[152];
 
 /**
  * 8x oversampling RRC filter for RDS
  * 
- * System gain = 1.000004087247406082 (+0.00004 dB), Maximum at 929.0074 Hz (0.0366% is over unity)
+ * System gain = 1.000004087247405860 (+0.00004 dB), Maximum at 929.0074 Hz (0.0366% is over unity)
  * 
  * Passband gain = 0.0000000000 .. 1.0000040872 (-Inf .. +0.00004 dB)
  * Minimum at 0.0000 Hz, Maximum at 929.0074 Hz
@@ -811,7 +822,7 @@ extern float rdsrrcprototype_19K_f[151];
  * Median = 0.0001253986 (-78.03414 dB) Mean = 0.0001497496 (-76.49268 dB)
  * MAD = 0.0000799562 STD = 0.0001104176
  */
-extern pct_1q15_t rdsrrcprototype_19K[151];
+extern pct_1q15_t rdsrrcprototype_19K[152];
 
 /**
  * Quick antialias filter for 243.750 Ksps baseband halving
@@ -930,12 +941,12 @@ extern pct_1q15_t audiolowpass_121K875[63];
  * Median = 0.0342494204 (-29.30694 dB) Mean = 0.0308685304 (-30.20968 dB)
  * MAD = 0.0119872929 STD = 0.0149374934
  */
-extern float complex pilot_121K875_c[37];
+extern float complex pilot_121K875_c[38];
 
 /**
  * FM 19 kHz pilot extractor for 121.875 Ksps
  * 
- * System gain = 0.999975804944853719 (-0.00021 dB), Maximum at -19000.0000 Hz (0.0000% is over unity)
+ * System gain = 0.999975804944853608 (-0.00021 dB), Maximum at -19000.0000 Hz (0.0000% is over unity)
  * 
  * Passband gain = 0.9953373531 .. 0.9999758049 (-0.04059 .. -0.00021 dB)
  * Minimum at -18800.0000 Hz, Maximum at -19000.0000 Hz
@@ -947,8 +958,8 @@ extern float complex pilot_121K875_c[37];
  * Median = 0.0342683608 (-29.30213 dB) Mean = 0.0308713811 (-30.20888 dB)
  * MAD = 0.0119793606 STD = 0.0149386569
  */
-extern pct_1q15_t pilot_121K875_real[37];
-extern pct_1q15_t pilot_121K875_imag[37];
+extern pct_1q15_t pilot_121K875_real[38];
+extern pct_1q15_t pilot_121K875_imag[38];
 
 /**
  * FM 19 kHz pilot extractor for 121.875 Ksps
@@ -965,12 +976,12 @@ extern pct_1q15_t pilot_121K875_imag[37];
  * Median = 0.0342406126 (-29.30917 dB) Mean = 0.0308489208 (-30.21520 dB)
  * MAD = 0.0119742716 STD = 0.0149275637
  */
-extern float complex pilot2_121K875_c[37];
+extern float complex pilot2_121K875_c[38];
 
 /**
  * FM 19 kHz pilot extractor for 121.875 Ksps
  * 
- * System gain = 1.000056102202609987 (+0.00049 dB), Maximum at -19000.0000 Hz (0.0427% is over unity)
+ * System gain = 1.000056102202610209 (+0.00049 dB), Maximum at -19000.0000 Hz (0.0427% is over unity)
  * 
  * Passband gain = 0.9954174727 .. 1.0000561022 (-0.03989 .. +0.00049 dB)
  * Minimum at -18800.0000 Hz, Maximum at -19000.0000 Hz
@@ -982,8 +993,8 @@ extern float complex pilot2_121K875_c[37];
  * Median = 0.0342501089 (-29.30676 dB) Mean = 0.0308463896 (-30.21591 dB)
  * MAD = 0.0119654132 STD = 0.0149264802
  */
-extern pct_1q15_t pilot2_121K875_real[37];
-extern pct_1q15_t pilot2_121K875_imag[37];
+extern pct_1q15_t pilot2_121K875_real[38];
+extern pct_1q15_t pilot2_121K875_imag[38];
 
 /**
  * RDS blocker for 121.875 Ksps
@@ -1000,12 +1011,12 @@ extern pct_1q15_t pilot2_121K875_imag[37];
  * Median = 0.0000370720 (-88.61909 dB) Mean = 0.0000335391 (-89.48897 dB)
  * MAD = 0.0000133452 STD = 0.0000163781
  */
-extern float killrds_121K875_f[11];
+extern float killrds_121K875_f[12];
 
 /**
  * RDS blocker for 121.875 Ksps
  * 
- * System gain = 0.999985096251978622 (-0.00013 dB), Maximum at 12773.7379 Hz (0.0000% is over unity)
+ * System gain = 0.999985096251978733 (-0.00013 dB), Maximum at 12773.7379 Hz (0.0000% is over unity)
  * 
  * Passband gain = 0.9978253605 .. 0.9999850963 (-0.01891 .. -0.00013 dB)
  * Minimum at 7119.6664 Hz, Maximum at 12773.7379 Hz
@@ -1017,7 +1028,7 @@ extern float killrds_121K875_f[11];
  * Median = 0.0000303126 (-90.36752 dB) Mean = 0.0000365796 (-88.73523 dB)
  * MAD = 0.0000183584 STD = 0.0000226870
  */
-extern pct_1q15_t killrds_121K875[11];
+extern pct_1q15_t killrds_121K875[12];
 
 /**
  * FM de-emphasis filter for 48.000 Ksps (EU)
