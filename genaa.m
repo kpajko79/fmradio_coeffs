@@ -40,7 +40,7 @@ else
     top = i * Fsout + Fstop;
 
     if (bot >= Fsin/2)
-      bot = (i - 1) * Fsout + Fstop + 1;
+      bot = (i - 1) * Fsout + Fstop + 0.0001;
       w = 0.0001;
     end
 
